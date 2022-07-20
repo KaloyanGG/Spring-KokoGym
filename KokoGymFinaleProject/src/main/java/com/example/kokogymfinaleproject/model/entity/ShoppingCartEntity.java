@@ -1,6 +1,7 @@
 package com.example.kokogymfinaleproject.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,6 +12,7 @@ public class ShoppingCartEntity extends BaseEntity {
     private List<CartItemEntity> cartItems;
 
     public ShoppingCartEntity() {
+        this.cartItems = new ArrayList<>();
     }
 
     public List<CartItemEntity> cartItems() {

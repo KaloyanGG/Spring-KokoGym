@@ -1,3 +1,152 @@
-nav{
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+    font-family: sans-serif;
+    background-color: #fff;
+}
+
+nav {
     background: red;
+    height: 5vh;
+    font-size: 14px;
+}
+
+nav ul {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0;
+}
+
+nav ul li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #110c0c;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+nav ul li a:hover {
+    background-color: lightblue;
+    color: black;
+}
+
+nav ul li img {
+    height: 100%;
+    width: 100%;
+    background: transparent;
+}
+
+footer {
+    align-items: center;
+    background-color: #262626;
+    bottom: 0;
+    color: white;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    height: 4vh;
+    width: 100%;
+}
+
+main {
+    margin: auto;
+    min-height: 90%;
+    background-color: #dbe5a8;
+    width: 70%;
+    float: left;
+    padding: 2%;
+}
+
+aside {
+    width: 25%;
+    background: yellow;
+    height: 50vh;
+    float: right;
+    right: 0;
+    position: sticky;
+    top: 0;
+    transform: translateY(50%);
+
+
+}
+
+#shopping-cart {
+    mix-blend-mode: multiply;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+form {
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    width: 100vh;
+    height: 100%;
+
+}
+
+.loginRegisterMain {
+    width: 100%;
+    /*display: flex;*/
+    /*align-items: center;*/
+}
+
+/*.formLabel {*/
+/*    width:50%;*/
+/*}*/
+
+/*.formInput {*/
+/*    width:50%;*/
+/*}*/
+/* Full-width input fields */
+input{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+input:focus {
+    background-color: #ddd;
+    outline: none;
+}
+.registerBtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
 }

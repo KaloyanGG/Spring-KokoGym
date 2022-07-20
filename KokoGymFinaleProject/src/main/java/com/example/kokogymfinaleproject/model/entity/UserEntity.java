@@ -10,6 +10,8 @@ public class UserEntity extends BaseEntity {
 
     @Column(unique = true, nullable = false)
     private String username;
+    @Column(unique = true, nullable = false)
+    private String email;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
@@ -29,7 +31,7 @@ public class UserEntity extends BaseEntity {
     public UserEntity() {
     }
 
-    public String username() {
+    public String getUsername() {
         return username;
     }
 
@@ -38,7 +40,16 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public String password() {
+    public String getEmail() {
+        return email;
+    }
+
+    public UserEntity setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public String getPassword() {
         return password;
     }
 
@@ -47,7 +58,7 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public String firstName() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -56,7 +67,7 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public String lastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -65,7 +76,7 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public LocalDate birthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
@@ -74,7 +85,7 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public ShoppingCartEntity shoppingCart() {
+    public ShoppingCartEntity getShoppingCart() {
         return shoppingCart;
     }
 
@@ -83,7 +94,7 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public List<RoleEntity> roles() {
+    public List<RoleEntity> getRoles() {
         return roles;
     }
 

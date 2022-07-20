@@ -1,6 +1,7 @@
 package com.example.kokogymfinaleproject.config;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,8 +27,9 @@ public class ApplicationBeanConfiguration {
 
         http
                 .authorizeRequests()
-                .anyRequest()
-                .permitAll();
+                .antMatchers("/", "/users/login", "/users/register").permitAll()
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                .anyRequest().permitAll();
         return http.build();
 
     }
