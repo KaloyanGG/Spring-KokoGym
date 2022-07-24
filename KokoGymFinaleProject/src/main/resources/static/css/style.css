@@ -106,33 +106,24 @@ aside {
 }
 
 form {
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
     width: 100vh;
     height: 100%;
 
 }
 
-.loginRegisterMain {
+.fullScreenMain {
     width: 100%;
-    /*display: flex;*/
-    /*align-items: center;*/
 }
 
-/*.formLabel {*/
-/*    width:50%;*/
-/*}*/
+.loginRegisterForm{
+    display:block;
+    margin:auto;
+}
 
-/*.formInput {*/
-/*    width:50%;*/
-/*}*/
-/* Full-width input fields */
 input{
     width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
+    padding: 10px;
+    margin: 5px 0 15px 0;
     display: inline-block;
     border: none;
     background: #f1f1f1;
@@ -141,6 +132,9 @@ input:focus {
     background-color: #ddd;
     outline: none;
 }
+.input-error{
+    border:red solid 1px;
+}
 .registerBtn {
     background-color: #04AA6D;
     color: white;
@@ -148,5 +142,89 @@ input:focus {
     border: none;
     cursor: pointer;
     width: 100%;
-    opacity: 0.9;
+    opacity: 0.8;
+}
+#logoutInput{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: inherit;
+    font-size: inherit;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+#logoutInput:hover{
+    background-color: lightblue;
+    color: black;
+}
+.welcome{
+    border: 1px solid #110c0c;
+    width: 25%;
+    float: right;
+    display: block;
+    margin: 1vh;
+    font-style: italic;
+    font-size: 25px;
+}
+#myProfileSection{
+    border: 1px solid #110c0c;
+    width: 80vh;
+    height: 90vh;
+    margin: auto;
+}
+#myProfilePicture{
+    max-width: 50%;
+    max-height: 22.5%;
+    border: 1px solid #110c0c;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#myProfileInfo{
+    border: 1px solid #110c0c;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: yellow;
+}
+.myProfileForm{
+    display:block;
+    margin:auto;
+}
+.formLabel{
+    display:block;
+    margin:auto;
+    font-size: 15px;
+    font-style: italic;
+}
+.myProfileFieldSet{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(8,7vh);
+    row-gap: 0;
+}
+#editProfileBtn{
+    background-color: #aa0404;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.8;
+}
+
+#saveProfileBtn{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+input[disabled] {
+    background-color: inherit;
+}
+.myProfileFieldSet input{
+
+    margin: 5px 0 5px 0;
+
 }

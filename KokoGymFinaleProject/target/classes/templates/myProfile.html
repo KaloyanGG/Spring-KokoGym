@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta role="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!--InBrowserLink-->
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title>Index</title>
+</head>
+<body>
+<!--th:replace="fragments/navbar.html::nav"-->
+<nav th:replace="fragments/navbar.html::nav">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Admin</a></li>
+        <li><a href="#">Group Workouts</a></li>
+        <li><a href="#">Trainers</a></li>
+        <li><a th:href="@{/shop}">Shop</a></li>
+        <li><a th:href="@{/users/login}" href="#">Login</a></li>
+        <li><a th:href="@{/users/register}">Register</a></li>
+        <li>
+            <a href="#" th:action="@{/users/logout}" th:method="post">
+                <form style="width:100%; height:100%; background: inherit" th:action="@{/users/logout}"
+                      th:method="post">
+                    <input id="logoutInput" value="LOGOUT" type="submit" th:value="LOGOUT">
+                </form>
+            </a>
+        </li>
+        <li><a href="#">My profile</a></li>
+        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg"
+                                                                  alt=""></a></li>
+    </ul>
+</nav>
+
+<main style="display: flex; " class="fullScreenMain">
+
+    <section id="myProfileSection">
+
+
+        <th:block th:if="${#authentication.principal.imageUrl==null}">
+            <img id="myProfilePicture"
+                 src="https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-12.jpg"
+                 alt="NO PIC">
+        </th:block>
+        <th:block th:if="${#authentication.principal.imageUrl!=null}">
+            <img id="myProfilePicture"
+                 th:src="${#authentication.principal.imageUrl}"
+                 alt="Picture not found">
+        </th:block>
+
+
+        <form class="myProfileForm" style="width: 90%; height: 50%" th:action="@{/users/myProfile}" th:method="post">
+            <fieldset class="myProfileFieldSet">
+                <label class="formLabel" for="username">Username:</label>
+                <input th:value="${#authentication.principal.username}" disabled class="formInput" id="username"
+                       name="username" type="text">
+                <label class="formLabel" for="email">Email:</label>
+                <input th:value="${#authentication.principal.email}" disabled class="formInput" id="email" name="email"
+                       type="email">
+                <label class="formLabel" for="firstName">First name:</label>
+                <input th:value="${#authentication.principal.firstName}" disabled class="formInput" id="firstName"
+                       name="firstName" type="text">
+                <label class="formLabel" for="lastName">Last name:</label>
+                <input th:value="${#authentication.principal.lastName}" disabled class="formInput" id="lastName"
+                       name="lastName" type="text">
+                <label class="formLabel" for="birthDate">Birthdate:</label>
+                <input th:value="${#authentication.principal.birthDate}" disabled class="formInput" id="birthDate"
+                       name="birthDate" type="date">
+                <th:block sec:authorize="hasRole('TRAINER')">
+                    <label class="formLabel" for="title">Title:</label>
+                    <input th:value="${title}" disabled class="formInput" id="title" name="title">
+                </th:block>
+                <th:block sec:authorize="!hasRole('TRAINER')">
+                    <label class="formLabel" for="level">Level:</label>
+                    <select disabled th:value="${level}" name="level" id="level">
+                      <option th:each="l : ${T(com.example.kokogymfinaleproject.model.enums.LevelNameEnum).values()}"
+                                th:value="${l}" th:text="${l}"></option>
+                    </select>
+                </th:block>
+                <label class="formLabel" for="imageUrl">ImageUrl:</label>
+                <input th:value="${#authentication.principal.imageUrl}" disabled class="formInput" id="imageUrl"
+                       name="imageUrl">
+
+                <button type="button" id="editProfileBtn" onclick="startEdit()"
+                        style="grid-column-start: 1; grid-column-end: 3;">Edit
+                </button>
+                <button style="display: none" id="saveProfileBtn" type="submit" class="registerBtn">Save</button>
+            </fieldset>
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>&copy 2022 - Kaloyan Georgiev</p>
+</footer>
+
+</body>
+
+<script>
+
+    function startEdit() {
+        document.getElementById("username").disabled = false;
+        // document.getElementById("username").style.background = 'red';
+        // document.getElementById("email").disabled = false;
+        // document.getElementById("firstName").disabled = false;
+        // document.getElementById("lastName").disabled = false;
+        // document.getElementById("birthDate").disabled = false;
+
+        if (document.getElementById("title") != null) {
+            document.getElementById("title").disabled = false;
+        }
+        if (document.getElementById("level") != null) {
+            document.getElementById("level").disabled = false;
+        }
+
+        document.getElementById("imageUrl").disabled = false;
+
+
+        document.getElementById("editProfileBtn").style.display = 'none';
+        document.getElementById("saveProfileBtn").style.display = 'inline-block';
+    }
+
+
+</script>
+
+</html>

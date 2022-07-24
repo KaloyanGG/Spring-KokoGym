@@ -10,21 +10,25 @@ public class RoleEntity extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
-    private RoleEnum name;
+    private RoleEnum role;
 
-    public RoleEntity(RoleEnum name) {
-        this.name = name;
+    public RoleEntity(RoleEnum role) {
+        this.role = role;
     }
 
     public RoleEntity() {
     }
 
     public RoleEnum role() {
-        return name;
+        return role;
     }
 
-    public RoleEntity setName(RoleEnum name) {
-        this.name = name;
+    public RoleEntity setRole(RoleEnum role) {
+        this.role = role;
         return this;
+    }
+
+    public RoleEnum getRole() {
+        return role;
     }
 }

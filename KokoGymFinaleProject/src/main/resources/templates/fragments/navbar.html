@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
+    <meta role="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
@@ -13,17 +13,29 @@
 
 <nav th:fragment="nav">
     <ul>
-        <li><a th:href="@{/home}" >Home</a></li>
-        <li><a href="#">Admin</a></li>
+        <li><a href="/">Home</a></li>
+        <li sec:authorize="hasRole('BOSS')"><a href="#">Admin</a></li>
+        <li><a href="#">Group Workouts</a></li>
         <li><a href="#">Trainers</a></li>
         <li><a th:href="@{/shop}">Shop</a></li>
-        <li><a th:href="@{/users/login}" href="#">Login</a></li>
-        <li><a th:href="@{/users/register}">Register</a></li>
-        <li><a th:href="@{/users/logout}">Logout</a></li>
-        <li><a href="#">My profile</a></li>
-        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg" alt=""></a></li>
+        <th:block sec:authorize="!isAuthenticated()">
+            <li><a th:href="@{/users/login}" href="#">Login</a></li>
+            <li><a th:href="@{/users/register}">Register</a></li>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+            <li>
+                <a href="#" th:action="@{/users/logout}" th:method="post">
+                    <form style="width:100%; height:100%; background: inherit" th:action="@{/users/logout}"
+                          th:method="post">
+                        <input id="logoutInput" type="submit" th:value="LOGOUT">
+                    </form>
+                </a>
+            </li>
+            <li><a href="#" th:href="@{/users/myProfile}">My profile</a></li>
+        </th:block>
+        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg"
+                                                                  alt=""></a></li>
     </ul>
-
 </nav>
 
 </body>

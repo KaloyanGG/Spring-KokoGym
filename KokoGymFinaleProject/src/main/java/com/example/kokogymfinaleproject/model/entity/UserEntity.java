@@ -2,6 +2,7 @@ package com.example.kokogymfinaleproject.model.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,6 +22,8 @@ public class UserEntity extends BaseEntity {
     private LocalDate birthDate;
     @OneToOne
     private ShoppingCartEntity shoppingCart;
+    @Column(unique = true, columnDefinition = "TEXT")
+    private String imageUrl;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
@@ -29,6 +32,7 @@ public class UserEntity extends BaseEntity {
     private List<RoleEntity> roles;
 
     public UserEntity() {
+        this.roles=new ArrayList<>();
     }
 
     public String getUsername() {
@@ -100,6 +104,15 @@ public class UserEntity extends BaseEntity {
 
     public UserEntity setRoles(List<RoleEntity> roles) {
         this.roles = roles;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public UserEntity setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 }

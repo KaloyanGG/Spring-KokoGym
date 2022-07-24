@@ -16,12 +16,17 @@ public class CustomerEntity extends BaseEntity {
     private TrainerEntity trainer;
 
     @ManyToOne(optional = false)
-    private Level level;
+    private LevelEntity level;
 
     public CustomerEntity() {
     }
 
-    public UserEntity user() {
+    public CustomerEntity(UserEntity user, LevelEntity level) {
+        this.user = user;
+        this.level = level;
+    }
+
+    public UserEntity getUser() {
         return user;
     }
 
@@ -30,7 +35,7 @@ public class CustomerEntity extends BaseEntity {
         return this;
     }
 
-    public TrainerEntity trainer() {
+    public TrainerEntity getTrainer() {
         return trainer;
     }
 
@@ -39,11 +44,11 @@ public class CustomerEntity extends BaseEntity {
         return this;
     }
 
-    public Level level() {
+    public LevelEntity getLevel() {
         return level;
     }
 
-    public CustomerEntity setLevel(Level level) {
+    public CustomerEntity setLevel(LevelEntity level) {
         this.level = level;
         return this;
     }

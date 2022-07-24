@@ -8,20 +8,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "levels")
-public class Level extends BaseEntity {
+public class LevelEntity extends BaseEntity {
 
     @Column(unique = true, nullable = false)
     private LevelNameEnum level;
 
 
-    public Level() {
+    public LevelEntity() {
     }
 
-    public LevelNameEnum level() {
+    public LevelEntity(LevelNameEnum level) {
+        this.level = level;
+    }
+
+    public LevelNameEnum getLevel() {
         return level;
     }
 
-    public Level setLevel(LevelNameEnum level) {
+    public LevelEntity setLevel(LevelNameEnum level) {
         this.level = level;
         return this;
     }

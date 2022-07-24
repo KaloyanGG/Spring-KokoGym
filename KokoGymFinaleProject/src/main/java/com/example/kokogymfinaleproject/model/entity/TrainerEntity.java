@@ -1,15 +1,15 @@
 package com.example.kokogymfinaleproject.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "trainers")
 public class TrainerEntity extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
-    private Long userId;
-
+    @OneToOne(optional = false)
+    private UserEntity user;
     @Column(nullable = false)
     private String title;
 
@@ -21,13 +21,11 @@ public class TrainerEntity extends BaseEntity {
     public TrainerEntity() {
     }
 
-    public Long userId() {
-        return userId;
-    }
-
-    public TrainerEntity setUserId(Long userId) {
-        this.userId = userId;
-        return this;
+    public TrainerEntity(UserEntity user, String title) {
+        this.user = user;
+        this.title = title;
+        this.customers=new ArrayList<>();
+        this.groupWorkouts=new ArrayList<>();
     }
 
     public List<CustomerEntity> customers() {
@@ -55,5 +53,26 @@ public class TrainerEntity extends BaseEntity {
     public TrainerEntity setGroupWorkouts(List<GroupWorkoutEntity> groupWorkouts) {
         this.groupWorkouts = groupWorkouts;
         return this;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public TrainerEntity setUser(UserEntity user) {
+        this.user = user;
+        return this;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<CustomerEntity> getCustomers() {
+        return customers;
+    }
+
+    public List<GroupWorkoutEntity> getGroupWorkouts() {
+        return groupWorkouts;
     }
 }

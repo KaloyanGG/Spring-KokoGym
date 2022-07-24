@@ -16,7 +16,7 @@ public class GroupWorkoutEntity extends BaseEntity {
 
     @ManyToOne(optional = false)
     @Enumerated(EnumType.STRING)
-    private Level minLevel;
+    private LevelEntity minLevelEntity;
 
     public TrainerEntity getTrainer() {
         return trainer;
@@ -52,12 +52,12 @@ public class GroupWorkoutEntity extends BaseEntity {
         return this;
     }
 
-    public Level minLevel() {
-        return minLevel;
+    public LevelEntity minLevel() {
+        return minLevelEntity;
     }
 
-    public GroupWorkoutEntity setMinLevel(Level minLevel) {
-        this.minLevel = minLevel;
+    public GroupWorkoutEntity setMinLevel(LevelEntity minLevelEntity) {
+        this.minLevelEntity = minLevelEntity;
         return this;
     }
 }

@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
+    <meta role="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -14,24 +14,30 @@
 </head>
 <body>
 <!--th:replace="fragments/navbar.html::nav"-->
-<nav>
+<nav th:replace="fragments/navbar.html::nav">
     <ul>
-        <li><a th:href="@{/home}">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="#">Admin</a></li>
+        <li><a href="#">Group Workouts</a></li>
         <li><a href="#">Trainers</a></li>
         <li><a th:href="@{/shop}">Shop</a></li>
         <li><a th:href="@{/users/login}" href="#">Login</a></li>
         <li><a th:href="@{/users/register}">Register</a></li>
-        <li><a th:href="@{/users/logout}">Logout</a></li>
+        <li>
+            <a href="#" th:action="@{/users/logout}" th:method="post">
+                <form style="width:100%; height:100%; background: inherit"  th:action="@{/users/logout}" th:method="post">
+                    <input id="logoutInput" value="LOGOUT" type="submit" th:value="LOGOUT">
+                </form>
+            </a>
+        </li>
         <li><a href="#">My profile</a></li>
-        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg" alt=""></a></li>
+        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg"
+                                                                  alt=""></a></li>
     </ul>
-
 </nav>
 
-<!--<div class="wrapper">-->
 <main>
-    <h1>Welcome to Koko Gym3</h1>
+    <h1>Welcome to Koko Gym</h1>
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
@@ -39,10 +45,13 @@
         mus.
         Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
     </p>
-    <img style="height: 30vh" src="https://media.istockphoto.com/photos/empty-gym-picture-id1132006407?k=20&m=1132006407&s=612x612&w=0&h=Z7nJu8jntywb9jOhvjlCS7lijbU4_hwHcxoVkxv77sg=" alt="">
+    <img style="height: 30vh"
+         src="https://media.istockphoto.com/photos/empty-gym-picture-id1132006407?k=20&m=1132006407&s=612x612&w=0&h=Z7nJu8jntywb9jOhvjlCS7lijbU4_hwHcxoVkxv77sg="
+         alt="">
     <p><strong>Let us help you build your dream body</strong></p>
     <h2>Our staff</h2>
-    <img style="height: 30vh" src="https://www.wellnessliving.com/blog/wp-content/uploads/2019/04/Gym-Staff-Candidates.jpg" alt="">
+    <img style="height: 30vh"
+         src="https://www.wellnessliving.com/blog/wp-content/uploads/2019/04/Gym-Staff-Candidates.jpg" alt="">
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
@@ -77,28 +86,33 @@
         Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
         mus.
         Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
-    </p><p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
-    Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-    mus.
-    Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
-</p><p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
-    Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-    mus.
-    Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
-</p>
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
+        Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+        mus.
+        Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo.
+        Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+        mus.
+        Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
+    </p>
 
 </main>
+
+<section th:replace="fragments/welcome.html::section" class="welcome">
+    Welcome, Guest!
+</section>
 
 <aside>
 
     Best offers/Discounts
 
 </aside>
-<!--</div>-->
 
 <footer>
     <p>&copy 2022 - Kaloyan Georgiev</p>
