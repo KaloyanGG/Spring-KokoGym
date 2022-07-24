@@ -1,10 +1,7 @@
 package com.example.kokogymfinaleproject.init;
 
 import com.example.kokogymfinaleproject.repository.ShoppingCartRepository;
-import com.example.kokogymfinaleproject.service.LevelService;
-import com.example.kokogymfinaleproject.service.RoleService;
-import com.example.kokogymfinaleproject.service.ShoppingCartService;
-import com.example.kokogymfinaleproject.service.UserService;
+import com.example.kokogymfinaleproject.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +12,14 @@ public class AppInit implements CommandLineRunner {
     private final RoleService roleService;
     private final ShoppingCartService shoppingCartService;
     private final LevelService levelService;
+    private final ProductService productService;
 
-    public AppInit(UserService userService, RoleService roleService, ShoppingCartRepository shoppingCartRepository, ShoppingCartService shoppingCartService, LevelService levelService) {
+    public AppInit(UserService userService, RoleService roleService, ShoppingCartRepository shoppingCartRepository, ShoppingCartService shoppingCartService, LevelService levelService, ProductService productService) {
         this.userService = userService;
         this.roleService = roleService;
         this.shoppingCartService = shoppingCartService;
         this.levelService = levelService;
+        this.productService = productService;
     }
 
 
@@ -30,5 +29,7 @@ public class AppInit implements CommandLineRunner {
         shoppingCartService.init();
         levelService.init();
         userService.init();
+        productService.init();
+
     }
 }

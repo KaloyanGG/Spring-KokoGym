@@ -1,6 +1,7 @@
 package com.example.kokogymfinaleproject.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,15 +10,25 @@ public class ProductEntity extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
+    private int stockQuantity;
+    private double price;
+    private String imageUrl;
     @ManyToMany
     @JoinTable(name = "products_categories",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<CategoryEntity> categories;
-    private int stockQuantity;
-    private double price;
+
 
     public ProductEntity() {
+    }
+
+    public ProductEntity(String name, int stockQuantity, double price, String imageUrl) {
+        this.name = name;
+        this.stockQuantity = stockQuantity;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.categories=new ArrayList<>();
     }
 
     public String name() {
@@ -54,5 +65,30 @@ public class ProductEntity extends BaseEntity {
     public ProductEntity setPrice(double price) {
         this.price = price;
         return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public ProductEntity setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public List<CategoryEntity> getCategories() {
+        return categories;
     }
 }
