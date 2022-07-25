@@ -4,13 +4,13 @@ import com.example.kokogymfinaleproject.model.KokoGymUserDetails;
 import com.example.kokogymfinaleproject.model.dto.UpdateUserDTO;
 import com.example.kokogymfinaleproject.model.entity.CustomerEntity;
 import com.example.kokogymfinaleproject.model.entity.TrainerEntity;
+import com.example.kokogymfinaleproject.model.entity.UserEntity;
 import com.example.kokogymfinaleproject.service.UserService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,14 +64,13 @@ public class UserController {
     @GetMapping("/myProfile")
     public String myProfile(Model model, @AuthenticationPrincipal KokoGymUserDetails user) {
 
-        Object customerOrTrainerById = this.userService.findCustomerOrTrainerById(user.getId());
+        Object customerOrTrainerOrBossById = this.userService.findCustomerOrTrainerById(user.getId());
 
-        if (customerOrTrainerById.getClass().getName().equals("com.example.kokogymfinaleproject.model.entity.CustomerEntity")) {
-            model.addAttribute("level", ((CustomerEntity) customerOrTrainerById).getLevel().getLevel().name());
-        } else {
-            model.addAttribute("title", ((TrainerEntity) customerOrTrainerById).getTitle());
+        if (customerOrTrainerOrBossById.getClass().getName().equals("com.example.kokogymfinaleproject.model.entity.CustomerEntity")) {
+            model.addAttribute("level", ((CustomerEntity) customerOrTrainerOrBossById).getLevel().getLevel().name());
+        } else if (customerOrTrainerOrBossById.getClass().getName().equals("com.example.kokogymfinaleproject.model.entity.TrainerEntity")) {
+            model.addAttribute("title", ((TrainerEntity) customerOrTrainerOrBossById).getTitle());
         }
-
         return "myProfile";
     }
 

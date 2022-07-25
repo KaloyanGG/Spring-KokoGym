@@ -12,7 +12,10 @@ public class CategoryEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     @Column(unique = true, nullable = false)
     private CategoryNameEnum name;
-    @ManyToMany()
+    @ManyToMany
+    @JoinTable(name = "products_categories",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<ProductEntity> products;
 
     public CategoryEntity() {

@@ -114,7 +114,12 @@ public class UserService {
         if (customer.isPresent()) {
             return customer.get();
         }
-        return this.trainerRepository.findByUserId(id).get();
+        Optional<TrainerEntity> trainer = this.trainerRepository.findByUserId(id);
+        if (trainer.isPresent()) {
+            return trainer.get();
+        }
+
+        return this.userRepository.findById(id);
 
     }
 
@@ -125,14 +130,15 @@ public class UserService {
         user.setImageUrl(userDTO.getImageUrl());
         this.userRepository.save(user);
 
-        if (userDTO.getTitle() == null) {
+        if (userDTO.getTitle() == null && userDTO.getLevel() != null) {
             CustomerEntity customer = this.customerRepository.findByUserId(id).get();
             customer
                     .setLevel(this.levelRepository.findByLevel(LevelNameEnum.valueOf(userDTO.getLevel())).get());
             this.customerRepository.save(customer);
-        } else {
+        } else if (userDTO.getTitle() != null && userDTO.getLevel() == null) {
             TrainerEntity trainer = this.trainerRepository.findByUserId(id).get();
-            trainer.setTitle(userDTO.getTitle());
+            trainer
+                    .setTitle(userDTO.getTitle());
             this.trainerRepository.save(trainer);
         }
         System.out.println();

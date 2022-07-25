@@ -71,7 +71,7 @@
                 <label class="formLabel" for="birthDate">Birthdate:</label>
                 <input th:value="${#authentication.principal.birthDate}" disabled class="formInput" id="birthDate"
                        name="birthDate" type="date">
-                <th:block sec:authorize="hasRole('TRAINER')">
+                <th:block sec:authorize="hasRole('TRAINER') && !hasRole('BOSS')">
                     <label class="formLabel" for="title">Title:</label>
                     <input th:value="${title}" disabled class="formInput" id="title" name="title">
                 </th:block>
