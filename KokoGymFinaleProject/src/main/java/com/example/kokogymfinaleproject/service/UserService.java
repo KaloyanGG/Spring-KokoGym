@@ -141,7 +141,6 @@ public class UserService {
                     .setTitle(userDTO.getTitle());
             this.trainerRepository.save(trainer);
         }
-        System.out.println();
 
     }
 }

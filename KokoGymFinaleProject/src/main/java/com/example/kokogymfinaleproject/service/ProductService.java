@@ -31,4 +31,8 @@ public class ProductService {
         return this.productRepository.findAll();
 
     }
+
+    public void add(ProductEntity product) {
+        this.productRepository.save(product);
+    }
 }
