@@ -49,7 +49,7 @@
                  alt="Pic not found">
             <div class="inside-product-template">
                 <h1 th:text="*{name}" class="shopping-cart-h1">Whey Isolate</h1>
-                <p>Price: <b th:text="*{price}">22.22$</b></p>
+                <p>Price: <b th:text="${#numbers.formatDecimal(p.price,1,2)}">22.22$</b></p>
                 <a class="add-to-cart-btn" th:href="@{/shop/addToCart/{id}(id=*{id})}" href="#">Add to Cart</a>
             </div>
         </div>

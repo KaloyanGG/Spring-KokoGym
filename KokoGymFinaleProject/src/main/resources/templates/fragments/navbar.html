@@ -15,8 +15,8 @@
     <ul>
         <li><a href="/">Home</a></li>
         <li sec:authorize="hasRole('BOSS')"><a href="#">Admin</a></li>
-        <li><a href="#">Group Workouts</a></li>
-        <li><a href="#">Trainers</a></li>
+        <li><a th:href="@{/groupWorkouts}" href="#">Group Workouts</a></li>
+        <li><a th:href="@{/trainers}" href="/trainers">Trainers</a></li>
         <li><a th:href="@{/shop}">Shop</a></li>
         <th:block sec:authorize="!isAuthenticated()">
             <li><a th:href="@{/users/login}" href="#">Login</a></li>

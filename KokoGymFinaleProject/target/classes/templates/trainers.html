@@ -37,20 +37,23 @@
     </ul>
 </nav>
 
-<main>
-    <div class="my-profile-heading">
-        <h1>Shop</h1>
-        <a sec:authorize="hasRole('BOSS')" class="add-new-product-a" th:href="@{/products/add}">ADD NEW PRODUCT</a>
-    </div>
-    <section id="shop-section">
-
-        <div th:each="p : ${products}" th:object="${p}" class="product-template">
-            <img th:src="*{imageUrl}" class="shop-img" src="https://bbteamcdn.com/shop/skus/large/2565_1.jpg"
-                 alt="Pic not found">
-            <div class="inside-product-template">
-                <h1 th:text="*{name}" class="shopping-cart-h1">Whey Isolate</h1>
-                <p>Price: <b th:text="${#numbers.formatDecimal(p.price,1,2)}">22.22$</b></p>
-                <a class="add-to-cart-btn" th:href="@{/shop/addToCart/{id}(id=*{id})}" href="#">Add to Cart</a>
+<main class="fullScreenMain">
+    <h1>Trainers</h1>
+    <section class="trainers-section">
+        <div th:each="t : ${trainers}" th:object="${t}" class="trainer-card">
+            <img class="trainer-img"
+                 src="https://media.gettyimages.com/photos/happy-personal-trainer-working-at-the-gym-picture-id852401732?s=612x612"
+                 th:src="*{user.imageUrl}"
+                 alt="Not Found">
+            <div class="trainer-info">
+                <h1 th:text="*{user.fullName}" >Foncho Ciganina</h1>
+                <h3 th:text="*{title}" style="opacity: 0.6">Fitness Coordinator</h3>
+                Birthdate:<p th:text="*{user.birthDate}"> Birthdate: 20.01.1978</p>
+                <p>Group workouts:
+                    <span th:each="gw : *{groupWorkouts}" th:text="|${gw.name} |">Zumba</span>
+<!--                    <a href="#">Yoga</a>,-->
+<!--                    <a href="#">Pump</a>-->
+                </p>
             </div>
         </div>
 
@@ -59,12 +62,6 @@
 
 </main>
 
-
-<aside>
-
-    Best offers/Discounts
-
-</aside>
 
 <footer>
     <p>&copy 2022 - Kaloyan Georgiev</p>

@@ -11,12 +11,16 @@ public class GroupWorkoutEntity extends BaseEntity {
     private String name;
     @Column(nullable = false)
     private String purpose;
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String description;
+
     @ManyToOne(optional = false)
     private TrainerEntity trainer;
 
     @ManyToOne(optional = false)
     @Enumerated(EnumType.STRING)
-    private LevelEntity minLevelEntity;
+    private LevelEntity minLevel;
+
 
     public TrainerEntity getTrainer() {
         return trainer;
@@ -25,7 +29,15 @@ public class GroupWorkoutEntity extends BaseEntity {
     public GroupWorkoutEntity() {
     }
 
-    public String name() {
+    public GroupWorkoutEntity(String name, String purpose, String description, TrainerEntity trainer, LevelEntity minLevel) {
+        this.name = name;
+        this.purpose = purpose;
+        this.description = description;
+        this.trainer = trainer;
+        this.minLevel = minLevel;
+    }
+
+    public String getName() {
         return name;
     }
 
@@ -34,7 +46,7 @@ public class GroupWorkoutEntity extends BaseEntity {
         return this;
     }
 
-    public String purpose() {
+    public String getPurpose() {
         return purpose;
     }
 
@@ -43,21 +55,26 @@ public class GroupWorkoutEntity extends BaseEntity {
         return this;
     }
 
-    public TrainerEntity trainer() {
-        return trainer;
-    }
-
     public GroupWorkoutEntity setTrainer(TrainerEntity trainer) {
         this.trainer = trainer;
         return this;
     }
 
-    public LevelEntity minLevel() {
-        return minLevelEntity;
+    public LevelEntity getMinLevel() {
+        return minLevel;
     }
 
-    public GroupWorkoutEntity setMinLevel(LevelEntity minLevelEntity) {
-        this.minLevelEntity = minLevelEntity;
+    public GroupWorkoutEntity setMinLevel(LevelEntity minLevel) {
+        this.minLevel = minLevel;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public GroupWorkoutEntity setDescription(String description) {
+        this.description = description;
         return this;
     }
 }

@@ -13,13 +13,15 @@ public class AppInit implements CommandLineRunner {
     private final ShoppingCartService shoppingCartService;
     private final LevelService levelService;
     private final ProductService productService;
+    private final GroupWorkoutService groupWorkoutService;
 
-    public AppInit(UserService userService, RoleService roleService, ShoppingCartRepository shoppingCartRepository, ShoppingCartService shoppingCartService, LevelService levelService, ProductService productService) {
+    public AppInit(UserService userService, RoleService roleService, ShoppingCartRepository shoppingCartRepository, ShoppingCartService shoppingCartService, LevelService levelService, ProductService productService, GroupWorkoutService groupWorkoutService) {
         this.userService = userService;
         this.roleService = roleService;
         this.shoppingCartService = shoppingCartService;
         this.levelService = levelService;
         this.productService = productService;
+        this.groupWorkoutService = groupWorkoutService;
     }
 
 
@@ -30,6 +32,7 @@ public class AppInit implements CommandLineRunner {
         levelService.init();
         userService.init();
         productService.init();
+        groupWorkoutService.init();
 
     }
 }

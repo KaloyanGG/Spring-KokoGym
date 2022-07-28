@@ -34,7 +34,7 @@ public class ProductController {
         );
         this.productService.add(product);
 
-    //todo add categories in shop and in add product
+    //todo add categories in shop
         return"redirect:/shop";
 
     }

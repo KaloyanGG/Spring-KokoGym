@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta role="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!--InBrowserLink-->
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <title>Document</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar.html::nav">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Admin</a></li>
+        <li><a href="#">Group Workouts</a></li>
+        <li><a href="#">Trainers</a></li>
+        <li><a th:href="@{/shop}">Shop</a></li>
+        <li><a th:href="@{/users/login}" href="#">Login</a></li>
+        <li><a th:href="@{/users/register}">Register</a></li>
+        <li>
+            <a href="#" th:action="@{/users/logout}" th:method="post">
+                <form style="width:100%; height:100%; background: inherit" th:action="@{/users/logout}"
+                      th:method="post">
+                    <input id="logoutInput" type="submit" th:value="LOGOUT">
+                </form>
+            </a>
+        </li>
+        <li><a href="#">My profile</a></li>
+        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg"
+                                                                  alt=""></a></li>
+    </ul>
+</nav>
+<main class="fullScreenMain">
+    <h1 style="text-align:center; margin:auto">Add group workout</h1>
+
+    <form style="display:block; margin:auto" th:action="@{/groupWorkouts/add}" th:method="post">
+        <fieldset class="add-product-fieldset">
+            <label class="formLabel" for="name">Group workout name:</label>
+            <input class="formInput" id="name" name="name" type="text">
+
+            <label class="formLabel" for="purpose">Purpose:</label>
+            <input class="formInput" id="purpose" name="purpose" type="text">
+            <label class="formLabel" for="description">Description:</label>
+            <input class="formInput" id="description" name="description" type="text">
+            <label class="formLabel" for="minLevel">Minimum level:</label>
+            <select class="add-group-workout-select" name="minLevel" id="minLevel">
+                <option th:each="l : ${T(com.example.kokogymfinaleproject.model.enums.LevelNameEnum).values()}"
+                        th:text="${l}"
+                        th:value="${l}">Level 1
+                </option>
+            </select>
+            <label class="formLabel" for="username">Trainer username:</label>
+            <select class="add-group-workout-select" name="username" id="username">
+                <option th:each="t: ${trainers}"
+                        th:text="${t.user.username}"
+                        th:value="${t.user.username}">Kiro
+                </option>
+            </select>
+            <button class="submitBtn" type="submit">Add</button>
+        </fieldset>
+    </form>
+
+
+</main>
+
+
+<footer>
+    <p>&copy 2022 - Kaloyan Georgiev</p>
+</footer>
+</body>
+</html>

@@ -13,7 +13,6 @@ public class LevelEntity extends BaseEntity {
     @Column(unique = true, nullable = false)
     private LevelNameEnum level;
 
-
     public LevelEntity() {
     }
 

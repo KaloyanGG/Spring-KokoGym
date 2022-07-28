@@ -115,4 +115,7 @@ public class UserEntity extends BaseEntity {
         this.imageUrl = imageUrl;
         return this;
     }
+    public String getFullName(){
+        return this.firstName+" "+this.lastName;
+    }
 }
