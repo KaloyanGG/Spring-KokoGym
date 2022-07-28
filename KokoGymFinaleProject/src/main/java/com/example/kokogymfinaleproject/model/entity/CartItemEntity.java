@@ -1,20 +1,20 @@
 package com.example.kokogymfinaleproject.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "cart_items")
+@Table(name = "cart_items"/* ,uniqueConstraints = { @UniqueConstraint(columnNames = { "product", "shoppingCart" }) }*/)
 public class CartItemEntity extends BaseEntity {
 
     @ManyToOne
     private ProductEntity product;
+
+    private int quantity;
+
     @ManyToOne
     private ShoppingCartEntity shoppingCart;
 
-    private int quantity;
+
 
     public ShoppingCartEntity getShoppingCart() {
         return shoppingCart;

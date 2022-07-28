@@ -8,21 +8,21 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "discounts")
-public class Discount extends BaseEntity {
+public class DiscountEntity extends BaseEntity {
 
     @Column(unique = true, nullable = false)
     private DiscountNameEnum name;
     @Column(nullable = false, unique = true)
     private double valueInPercentage;
 
-    public Discount() {
+    public DiscountEntity() {
     }
 
     public DiscountNameEnum discountName() {
         return name;
     }
 
-    public Discount setName(DiscountNameEnum discountName) {
+    public DiscountEntity setName(DiscountNameEnum discountName) {
         this.name = discountName;
         return this;
     }
@@ -31,7 +31,7 @@ public class Discount extends BaseEntity {
         return valueInPercentage;
     }
 
-    public Discount setValueInPercentage(double valueInPercentage) {
+    public DiscountEntity setValueInPercentage(double valueInPercentage) {
         this.valueInPercentage = valueInPercentage;
         return this;
     }

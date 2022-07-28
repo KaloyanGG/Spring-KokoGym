@@ -1,59 +1,36 @@
 package com.example.kokogymfinaleproject.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
 public class OrderEntity extends BaseEntity {
 
-    @ManyToOne(optional = false)
-    private ProductEntity product;
+    @OneToMany(mappedBy = "order")
+    List<OrderItemEntity> orderItems;
+
     @ManyToOne(optional = false)
     private UserEntity user;
-    @Column(nullable = false)
-    private int quantity;
-    @ManyToOne(optional = false)
-    private Discount discount;
 
     public OrderEntity() {
     }
 
-    public ProductEntity product() {
-        return product;
+    public List<OrderItemEntity> getOrderItems() {
+        return orderItems;
     }
 
-    public OrderEntity setProduct(ProductEntity product) {
-        this.product = product;
+    public OrderEntity setOrderItems(List<OrderItemEntity> orderItems) {
+        this.orderItems = orderItems;
         return this;
     }
 
-    public UserEntity user() {
+    public UserEntity getUser() {
         return user;
     }
 
     public OrderEntity setUser(UserEntity user) {
         this.user = user;
-        return this;
-    }
-
-    public int quantity() {
-        return quantity;
-    }
-
-    public OrderEntity setQuantity(int quantity) {
-        this.quantity = quantity;
-        return this;
-    }
-
-    public Discount discount() {
-        return discount;
-    }
-
-    public OrderEntity setDiscount(Discount discount) {
-        this.discount = discount;
         return this;
     }
 }
