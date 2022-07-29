@@ -47,42 +47,23 @@
 
         <div th:each="ci : ${#authentication.principal.shoppingCart.cartItems}" class="Cart-Items">
             <div class="image-box">
-                <img th:src="${ci.product.imageUrl}" src="https://media.istockphoto.com/photos/red-apple-picture-id184276818?k=20&m=184276818&s=612x612&w=0&h=QxOcueqAUVTdiJ7DVoCu-BkNCIuwliPEgtAQhgvBA_g="
-                     style="max-width: 100%"  />
+                <img th:src="${ci.product.imageUrl}" src="https://images.unsplash.com/photo-1532463788086-56a492a0b34a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9uZ3xlbnwwfHwwfHw%3D&w=1000&q=80"
+                     style="max-width: 100%; max-height: 100%"  />
             </div>
             <div class="about">
-                <h1 class="title">Apple Juice</h1>
-                <p>In Stock: 300</p>
+                <h1 th:text="${ci.product.name}" class="title">Apple Juice</h1>
+                <p th:text="|InStock: ${ci.product.stockQuantity}|">In Stock: 300</p>
             </div>
             <div class="counter">
-                <div class="btn">+</div>
-                <div class="count">1</div>
-                <div class="btn">-</div>
+                <a class="increase-decrease" href="#"><div class="increase-decrease-btn">+</div></a>
+                <div th:text="${ci.quantity}" class="count">1</div>
+                <a class="increase-decrease" href="#"><div class="increase-decrease-btn">-</div></a>
             </div>
             <div class="prices">
-                <div class="amount">$2.99</div>
-                <div class="remove"><u>Remove</u></div>
+                <div th:text="${ci.product.price}" class="amount">$2.99</div>
+                <a href="#"><div class="remove"><u>Remove</u></div></a>
             </div>
         </div>
-<!--        <div class="Cart-Items">-->
-<!--            <div class="image-box">-->
-<!--                <img src="https://media.istockphoto.com/photos/red-apple-picture-id184276818?k=20&m=184276818&s=612x612&w=0&h=QxOcueqAUVTdiJ7DVoCu-BkNCIuwliPEgtAQhgvBA_g="-->
-<!--                     style="max-width: 100%"  />-->
-<!--            </div>-->
-<!--            <div class="about">-->
-<!--                <h1 class="title">Apple Juice</h1>-->
-<!--                <p>In Stock: 300</p>-->
-<!--            </div>-->
-<!--            <div class="counter">-->
-<!--                <div class="btn">+</div>-->
-<!--                <div class="count">1</div>-->
-<!--                <div class="btn">-</div>-->
-<!--            </div>-->
-<!--            <div class="prices">-->
-<!--                <div class="amount">$2.99</div>-->
-<!--                <div class="remove"><u>Remove</u></div>-->
-<!--            </div>-->
-<!--        </div>-->
 <!--        <div class="Cart-Items">-->
 <!--            <div class="image-box">-->
 <!--                <img src="https://image.shutterstock.com/image-photo/pears-isolated-on-white-background-260nw-104754677.jpg"-->
@@ -110,11 +91,12 @@
             <div class="total">
                 <div>
                     <div class="Subtotal">Sub-Total</div>
-                    <div class="items">2 items</div>
+                    <div th:text="|${count} items|" class="items">0 items</div>
                 </div>
-                <div class="total-amount">$6.18</div>
+                <div th:text="${sum}" class="total-amount">0.00</div>
             </div>
-            <button class="cart-button">Checkout</button></div>
+            <a href="#"><button class="cart-button">Checkout</button></a>
+        </div>
     </div>
 
 

@@ -52,6 +52,7 @@
                 <p>Price: <b th:text="${#numbers.formatDecimal(p.price,1,2)}">22.22$</b></p>
                 <a sec:authorize="${isAuthenticated()}" class="add-to-cart-btn" th:href="@{/shop/addToCart/{id}(id=*{id})}" href="#">Add to Cart</a>
                 <a sec:authorize="${!isAuthenticated()}" class="add-to-cart-btn" th:href="@{/users/login}" href="#">Add to Cart</a>
+<!--            todo: Make "add to cart" to "added" somehow... -->
             </div>
         </div>
 

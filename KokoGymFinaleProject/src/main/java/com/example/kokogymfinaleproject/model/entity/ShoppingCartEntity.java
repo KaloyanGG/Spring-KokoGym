@@ -27,4 +27,21 @@ public class ShoppingCartEntity extends BaseEntity {
         this.cartItems = cartItems;
         return this;
     }
+
+    public double getSum() {
+
+        double sum = 0;
+        for (CartItemEntity cartItem : cartItems) {
+            sum += cartItem.getProduct().getPrice() * cartItem.getQuantity();
+        }
+        return sum;
+    }
+
+    public int getCountOfAllItems() {
+        int count = 0;
+        for (CartItemEntity cartItem : cartItems) {
+            count += cartItem.getQuantity();
+        }
+        return count;
+    }
 }

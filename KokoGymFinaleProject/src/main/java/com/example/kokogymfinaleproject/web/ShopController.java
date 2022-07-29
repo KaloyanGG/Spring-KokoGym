@@ -37,7 +37,7 @@ public class ShopController {
     @GetMapping("/addToCart/{id}")
     public String addToCart(Model model, @PathVariable("id") Long id, @AuthenticationPrincipal KokoGymUserDetails userDetails) {
         productService.makeCartItem(id, userDetails.getShoppingCart());
-        return "shop";
+        return "redirect:/shop";
     }
     
 
