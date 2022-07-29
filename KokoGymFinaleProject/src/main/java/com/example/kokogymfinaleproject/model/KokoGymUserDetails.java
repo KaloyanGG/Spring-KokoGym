@@ -1,5 +1,6 @@
 package com.example.kokogymfinaleproject.model;
 
+import com.example.kokogymfinaleproject.model.entity.ShoppingCartEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,8 +17,10 @@ public class KokoGymUserDetails implements UserDetails {
     private String lastName;
     private LocalDate birthDate;
     private String imageUrl;
+
+    private ShoppingCartEntity shoppingCart;
     private Collection<GrantedAuthority> authorities;
-    public KokoGymUserDetails(Long id, String password, String username, String email, String firstName, String lastName, LocalDate birthDate, String imageUrl, Collection<GrantedAuthority> authorities) {
+    public KokoGymUserDetails(Long id, String password, String username, String email, String firstName, String lastName, LocalDate birthDate, String imageUrl, ShoppingCartEntity shoppingCart, Collection<GrantedAuthority> authorities) {
         this.id = id;
         this.password = password;
         this.username = username;
@@ -26,6 +29,7 @@ public class KokoGymUserDetails implements UserDetails {
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.imageUrl = imageUrl;
+        this.shoppingCart = shoppingCart;
         this.authorities = authorities;
     }
 
@@ -132,6 +136,15 @@ public class KokoGymUserDetails implements UserDetails {
 
     public KokoGymUserDetails setAuthorities(Collection<GrantedAuthority> authorities) {
         this.authorities = authorities;
+        return this;
+    }
+
+    public ShoppingCartEntity getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public KokoGymUserDetails setShoppingCart(ShoppingCartEntity shoppingCart) {
+        this.shoppingCart = shoppingCart;
         return this;
     }
 }

@@ -14,14 +14,31 @@ public class CartItemEntity extends BaseEntity {
     @ManyToOne
     private ShoppingCartEntity shoppingCart;
 
+    public ProductEntity getProduct() {
+        return product;
+    }
 
+    public CartItemEntity setProduct(ProductEntity product) {
+        this.product = product;
+        return this;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public CartItemEntity setQuantity(int quantity) {
+        this.quantity = quantity;
+        return this;
+    }
 
     public ShoppingCartEntity getShoppingCart() {
         return shoppingCart;
     }
 
-    public void setShoppingCart(ShoppingCartEntity shoppingCart) {
+    public CartItemEntity setShoppingCart(ShoppingCartEntity shoppingCart) {
         this.shoppingCart = shoppingCart;
+        return this;
     }
 
 }

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta role="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!--InBrowserLink-->
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
+    <title>Index</title>
+</head>
+<body>
+<!--th:replace="fragments/navbar.html::nav"-->
+<nav th:replace="fragments/navbar.html::nav">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Admin</a></li>
+        <li><a href="#">Group Workouts</a></li>
+        <li><a href="#">Trainers</a></li>
+        <li><a th:href="@{/shop}">Shop</a></li>
+        <li><a th:href="@{/users/login}" href="#">Login</a></li>
+        <li><a th:href="@{/users/register}">Register</a></li>
+        <li>
+            <a href="#" th:action="@{/users/logout}" th:method="post">
+                <form style="width:100%; height:100%; background: inherit" th:action="@{/users/logout}"
+                      th:method="post">
+                    <input id="logoutInput" value="LOGOUT" type="submit" th:value="LOGOUT">
+                </form>
+            </a>
+        </li>
+        <li><a href="#">My profile</a></li>
+        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg"
+                                                                  alt=""></a></li>
+    </ul>
+</nav>
+
+<main>
+    <div class="CartContainer">
+        <div class="Header">
+            <h3 class="Heading">Shopping Cart</h3>
+            <h5 class="Action">Remove all</h5>
+        </div>
+
+        <div th:each="ci : ${#authentication.principal.shoppingCart.cartItems}" class="Cart-Items">
+            <div class="image-box">
+                <img th:src="${ci.product.imageUrl}" src="https://media.istockphoto.com/photos/red-apple-picture-id184276818?k=20&m=184276818&s=612x612&w=0&h=QxOcueqAUVTdiJ7DVoCu-BkNCIuwliPEgtAQhgvBA_g="
+                     style="max-width: 100%"  />
+            </div>
+            <div class="about">
+                <h1 class="title">Apple Juice</h1>
+                <p>In Stock: 300</p>
+            </div>
+            <div class="counter">
+                <div class="btn">+</div>
+                <div class="count">1</div>
+                <div class="btn">-</div>
+            </div>
+            <div class="prices">
+                <div class="amount">$2.99</div>
+                <div class="remove"><u>Remove</u></div>
+            </div>
+        </div>
+<!--        <div class="Cart-Items">-->
+<!--            <div class="image-box">-->
+<!--                <img src="https://media.istockphoto.com/photos/red-apple-picture-id184276818?k=20&m=184276818&s=612x612&w=0&h=QxOcueqAUVTdiJ7DVoCu-BkNCIuwliPEgtAQhgvBA_g="-->
+<!--                     style="max-width: 100%"  />-->
+<!--            </div>-->
+<!--            <div class="about">-->
+<!--                <h1 class="title">Apple Juice</h1>-->
+<!--                <p>In Stock: 300</p>-->
+<!--            </div>-->
+<!--            <div class="counter">-->
+<!--                <div class="btn">+</div>-->
+<!--                <div class="count">1</div>-->
+<!--                <div class="btn">-</div>-->
+<!--            </div>-->
+<!--            <div class="prices">-->
+<!--                <div class="amount">$2.99</div>-->
+<!--                <div class="remove"><u>Remove</u></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="Cart-Items">-->
+<!--            <div class="image-box">-->
+<!--                <img src="https://image.shutterstock.com/image-photo/pears-isolated-on-white-background-260nw-104754677.jpg"-->
+<!--                     style="max-width: 100%"  />-->
+<!--            </div>-->
+<!--            <div class="about">-->
+<!--                <h1 class="title">Apple Juice</h1>-->
+<!--                <p>In Stock: 300</p>-->
+<!--            </div>-->
+<!--            <div class="counter">-->
+<!--                <div class="btn">+</div>-->
+<!--                <div class="count">1</div>-->
+<!--                <div class="btn">-</div>-->
+<!--            </div>-->
+<!--            <div class="prices">-->
+<!--                <div class="amount">$2.99</div>-->
+<!--                <div class="remove"><u>Remove</u></div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+        <hr>
+        <div class="checkout">
+            <div class="total">
+                <div>
+                    <div class="Subtotal">Sub-Total</div>
+                    <div class="items">2 items</div>
+                </div>
+                <div class="total-amount">$6.18</div>
+            </div>
+            <button class="cart-button">Checkout</button></div>
+    </div>
+
+
+</main>
+
+
+<aside>
+
+    Best offers/Discounts
+
+</aside>
+
+<footer>
+    <p>&copy 2022 - Kaloyan Georgiev</p>
+</footer>
+
+</body>
+</html>

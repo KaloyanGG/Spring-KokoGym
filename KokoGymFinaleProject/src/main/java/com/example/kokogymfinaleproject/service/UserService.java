@@ -194,4 +194,10 @@ public class UserService {
 
 
     }
+
+    public UserEntity findById(Long id) {
+
+            return this.userRepository.findById(id).get();
+
+    }
 }

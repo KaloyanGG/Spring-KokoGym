@@ -9,6 +9,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
+
 
 public class KokoGymUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
@@ -27,10 +29,10 @@ public class KokoGymUserDetailsService implements UserDetailsService {
 
         return userDetails;
     }
+    //todo: first the kokogymuserdetails then set either shopping cart  or roles
+    UserDetails map(UserEntity userEntity) {
 
-    private UserDetails map(UserEntity userEntity) {
-
-        return new KokoGymUserDetails(
+        KokoGymUserDetails kokoGymUserDetails = new KokoGymUserDetails(
                 userEntity.getId(),
                 userEntity.getPassword(),
                 userEntity.getUsername(),
@@ -39,12 +41,15 @@ public class KokoGymUserDetailsService implements UserDetailsService {
                 userEntity.getLastName(),
                 userEntity.getBirthDate(),
                 userEntity.getImageUrl(),
+                userEntity.getShoppingCart(),
                 userEntity.
                         getRoles().
                         stream().
                         map(this::map).
                         toList()
         );
+
+        return kokoGymUserDetails;
     }
 
     private GrantedAuthority map(RoleEntity userRole) {

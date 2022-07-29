@@ -1,5 +1,8 @@
 package com.example.kokogymfinaleproject.model.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +12,7 @@ import java.util.List;
 public class ShoppingCartEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "shoppingCart")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<CartItemEntity> cartItems;
 
     public ShoppingCartEntity() {
