@@ -52,6 +52,12 @@ public class ShoppingCartController {
         userService.removeFromShoppingCart(id, userDetails);
         return "redirect:/shoppingCart";
     }
+    @GetMapping("/removeAll")
+    public String removeAll(@AuthenticationPrincipal KokoGymUserDetails userDetails) {
+        userService.removeAllFromShoppingCart(userDetails);
+        userDetails.getShoppingCart().getCartItems().clear();
+        return "redirect:/shoppingCart";
+    }
 
     @GetMapping("/checkout")
     public String makeOrder(Model model, @AuthenticationPrincipal KokoGymUserDetails userDetails) {

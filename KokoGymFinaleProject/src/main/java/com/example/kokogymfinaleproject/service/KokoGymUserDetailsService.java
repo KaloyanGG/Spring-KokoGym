@@ -29,7 +29,6 @@ public class KokoGymUserDetailsService implements UserDetailsService {
 
         return userDetails;
     }
-    //todo: first the kokogymuserdetails then set either shopping cart  or roles
     UserDetails map(UserEntity userEntity) {
 
         KokoGymUserDetails kokoGymUserDetails = new KokoGymUserDetails(

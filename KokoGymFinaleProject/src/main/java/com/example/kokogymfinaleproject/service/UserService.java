@@ -8,14 +8,13 @@ import com.example.kokogymfinaleproject.model.enums.LevelNameEnum;
 import com.example.kokogymfinaleproject.model.enums.RoleEnum;
 import com.example.kokogymfinaleproject.repository.*;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -28,8 +27,9 @@ public class UserService {
     private final CustomerRepository customerRepository;
     private final LevelRepository levelRepository;
     private final TrainerRepository trainerRepository;
+    private final CartItemRepository cartItemRepository;
 
-    public UserService(UserRepository userRepository, ModelMapper mapper, RoleRepository roleRepository, ShoppingCartRepository shoppingCartRepository, PasswordEncoder passwordEncoder, CustomerRepository customerRepository, LevelRepository levelRepository, TrainerRepository trainerRepository) {
+    public UserService(UserRepository userRepository, ModelMapper mapper, RoleRepository roleRepository, ShoppingCartRepository shoppingCartRepository, PasswordEncoder passwordEncoder, CustomerRepository customerRepository, LevelRepository levelRepository, TrainerRepository trainerRepository, CartItemRepository cartItemRepository) {
         this.userRepository = userRepository;
         this.mapper = mapper;
         this.roleRepository = roleRepository;
@@ -38,6 +38,7 @@ public class UserService {
         this.customerRepository = customerRepository;
         this.levelRepository = levelRepository;
         this.trainerRepository = trainerRepository;
+        this.cartItemRepository = cartItemRepository;
     }
 
     public void register(UserRegisterDTO userRegisterDTO) {
@@ -238,6 +239,16 @@ public class UserService {
                         .stream()
                         .filter(cartItem -> cartItem.getId() == id).findFirst().get());
 
+        this.cartItemRepository.deleteById(id);
 
+
+    }
+
+    public void removeAllFromShoppingCart(KokoGymUserDetails userDetails) {
+        this.cartItemRepository.deleteAll(
+                userDetails
+                        .getShoppingCart()
+                        .getCartItems()
+        );
     }
 }
