@@ -17,8 +17,7 @@ public class OrderItemEntity extends BaseEntity{
 
     @Column(nullable = false)
     private int quantity;
-    @ManyToOne(optional = false)
-    private DiscountEntity discountEntity;
+
     @ManyToOne
     private OrderEntity order;
 
@@ -43,12 +42,21 @@ public class OrderItemEntity extends BaseEntity{
         return this;
     }
 
-    public DiscountEntity getDiscountEntity() {
-        return discountEntity;
+//    public DiscountEntity getDiscountEntity() {
+//        return discountEntity;
+//    }
+//
+//    public OrderItemEntity setDiscountEntity(DiscountEntity discountEntity) {
+//        this.discountEntity = discountEntity;
+//        return this;
+//    }
+
+    public OrderEntity getOrder() {
+        return order;
     }
 
-    public OrderItemEntity setDiscountEntity(DiscountEntity discountEntity) {
-        this.discountEntity = discountEntity;
+    public OrderItemEntity setOrder(OrderEntity order) {
+        this.order = order;
         return this;
     }
 }

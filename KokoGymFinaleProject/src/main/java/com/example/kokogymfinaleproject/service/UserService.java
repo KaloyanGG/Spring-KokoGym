@@ -3,10 +3,7 @@ package com.example.kokogymfinaleproject.service;
 import com.example.kokogymfinaleproject.model.KokoGymUserDetails;
 import com.example.kokogymfinaleproject.model.binding.UserRegisterDTO;
 import com.example.kokogymfinaleproject.model.dto.UpdateUserDTO;
-import com.example.kokogymfinaleproject.model.entity.CustomerEntity;
-import com.example.kokogymfinaleproject.model.entity.ShoppingCartEntity;
-import com.example.kokogymfinaleproject.model.entity.TrainerEntity;
-import com.example.kokogymfinaleproject.model.entity.UserEntity;
+import com.example.kokogymfinaleproject.model.entity.*;
 import com.example.kokogymfinaleproject.model.enums.LevelNameEnum;
 import com.example.kokogymfinaleproject.model.enums.RoleEnum;
 import com.example.kokogymfinaleproject.repository.*;
@@ -24,13 +21,13 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private ModelMapper mapper;
-    private RoleRepository roleRepository;
-    private ShoppingCartRepository shoppingCartRepository;
-    private PasswordEncoder passwordEncoder;
-    private CustomerRepository customerRepository;
-    private LevelRepository levelRepository;
-    private TrainerRepository trainerRepository;
+    private final ModelMapper mapper;
+    private final RoleRepository roleRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomerRepository customerRepository;
+    private final LevelRepository levelRepository;
+    private final TrainerRepository trainerRepository;
 
     public UserService(UserRepository userRepository, ModelMapper mapper, RoleRepository roleRepository, ShoppingCartRepository shoppingCartRepository, PasswordEncoder passwordEncoder, CustomerRepository customerRepository, LevelRepository levelRepository, TrainerRepository trainerRepository) {
         this.userRepository = userRepository;
@@ -198,6 +195,49 @@ public class UserService {
     public UserEntity findById(Long id) {
 
             return this.userRepository.findById(id).get();
+
+    }
+
+    public void increaseQuantityInShoppingCart(Long id, KokoGymUserDetails userDetails) {
+
+        CartItemEntity cartItemEntity = userDetails
+                .getShoppingCart()
+                .getCartItems()
+                .stream()
+                .filter(cartItem -> cartItem.getId() == id).findFirst().get();
+
+        if(cartItemEntity.getQuantity() < cartItemEntity.getProduct().getStockQuantity()) {
+            cartItemEntity.setQuantity(cartItemEntity.getQuantity() + 1);
+        }
+
+    }
+
+    public void decreaseQuantityInShoppingCart(Long id, KokoGymUserDetails userDetails) {
+
+            CartItemEntity cartItemEntity = userDetails
+                    .getShoppingCart()
+                    .getCartItems()
+                    .stream()
+                    .filter(cartItem -> cartItem.getId() == id).findFirst().get();
+
+        if(cartItemEntity.getQuantity() > 1) {
+            cartItemEntity.setQuantity(cartItemEntity.getQuantity() - 1);
+        }
+
+
+    }
+
+    public void removeFromShoppingCart(Long id, KokoGymUserDetails userDetails) {
+
+        userDetails
+                .getShoppingCart()
+                .getCartItems()
+                .remove(userDetails
+                        .getShoppingCart()
+                        .getCartItems()
+                        .stream()
+                        .filter(cartItem -> cartItem.getId() == id).findFirst().get());
+
 
     }
 }

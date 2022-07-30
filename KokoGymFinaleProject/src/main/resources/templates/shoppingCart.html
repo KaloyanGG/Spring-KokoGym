@@ -47,43 +47,49 @@
 
         <div th:each="ci : ${#authentication.principal.shoppingCart.cartItems}" class="Cart-Items">
             <div class="image-box">
-                <img th:src="${ci.product.imageUrl}" src="https://images.unsplash.com/photo-1532463788086-56a492a0b34a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9uZ3xlbnwwfHwwfHw%3D&w=1000&q=80"
-                     style="max-width: 100%; max-height: 100%"  />
+                <img th:src="${ci.product.imageUrl}"
+                     src="https://images.unsplash.com/photo-1532463788086-56a492a0b34a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9uZ3xlbnwwfHwwfHw%3D&w=1000&q=80"
+                     style="max-width: 100%; max-height: 100%"/>
             </div>
             <div class="about">
                 <h1 th:text="${ci.product.name}" class="title">Apple Juice</h1>
                 <p th:text="|InStock: ${ci.product.stockQuantity}|">In Stock: 300</p>
             </div>
             <div class="counter">
-                <a class="increase-decrease" href="#"><div class="increase-decrease-btn">+</div></a>
+                <a class="increase-decrease" href="#" th:href="@{/shoppingCart/increase/{id}(id=${ci.id})}">
+                    <div class="increase-decrease-btn">+</div>
+                </a>
                 <div th:text="${ci.quantity}" class="count">1</div>
-                <a class="increase-decrease" href="#"><div class="increase-decrease-btn">-</div></a>
+                <a class="increase-decrease" href="#" th:href="@{/shoppingCart/decrease/{id}(id=${ci.id})}">
+                    <div class="increase-decrease-btn">-</div>
+                </a>
             </div>
             <div class="prices">
-                <div th:text="${#numbers.formatDecimal(ci.product.price,1,2)}" class="amount">$2.99</div>
-                <a href="#"><div class="remove"><u>Remove</u></div></a>
+                <div th:text="${#numbers.formatDecimal(ci.product.price,1,2)}" class="amount">$2.99<span style="font-size: 13px; font-weight: normal"> for one</span></div>
+                <a href="#"  th:href="@{/shoppingCart/remove/{id}(id=${ci.id})}">
+                    <div class="remove"><u>Remove</u></div>
+                </a>
             </div>
         </div>
-<!--        <div class="Cart-Items">-->
-<!--            <div class="image-box">-->
-<!--                <img src="https://image.shutterstock.com/image-photo/pears-isolated-on-white-background-260nw-104754677.jpg"-->
-<!--                     style="max-width: 100%"  />-->
-<!--            </div>-->
-<!--            <div class="about">-->
-<!--                <h1 class="title">Apple Juice</h1>-->
-<!--                <p>In Stock: 300</p>-->
-<!--            </div>-->
-<!--            <div class="counter">-->
-<!--                <div class="btn">+</div>-->
-<!--                <div class="count">1</div>-->
-<!--                <div class="btn">-</div>-->
-<!--            </div>-->
-<!--            <div class="prices">-->
-<!--                <div class="amount">$2.99</div>-->
-<!--                <div class="remove"><u>Remove</u></div>-->
-<!--            </div>-->
-<!--        </div>-->
-
+        <!--        <div class="Cart-Items">-->
+        <!--            <div class="image-box">-->
+        <!--                <img src="https://image.shutterstock.com/image-photo/pears-isolated-on-white-background-260nw-104754677.jpg"-->
+        <!--                     style="max-width: 100%"  />-->
+        <!--            </div>-->
+        <!--            <div class="about">-->
+        <!--                <h1 class="title">Apple Juice</h1>-->
+        <!--                <p>In Stock: 300</p>-->
+        <!--            </div>-->
+        <!--            <div class="counter">-->
+        <!--                <div class="btn">+</div>-->
+        <!--                <div class="count">1</div>-->
+        <!--                <div class="btn">-</div>-->
+        <!--            </div>-->
+        <!--            <div class="prices">-->
+        <!--                <div class="amount">$2.99</div>-->
+        <!--                <div class="remove"><u>Remove</u></div>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
 
         <hr>
@@ -93,9 +99,11 @@
                     <div class="Subtotal">Sub-Total</div>
                     <div th:text="|${count} items|" class="items">0 items</div>
                 </div>
-                <div th:text="${sum}" class="total-amount">0.00</div>
+                <div th:text="${#numbers.formatDecimal(sum,1,2)}" class="total-amount">0.00</div>
             </div>
-            <a href="#"><button class="cart-button">Checkout</button></a>
+            <a href="#" th:href="@{/shoppingCart/checkout}">
+                <button class="cart-button">Checkout</button>
+            </a>
         </div>
     </div>
 

@@ -19,7 +19,7 @@ public class ShoppingCartEntity extends BaseEntity {
         this.cartItems = new ArrayList<>();
     }
 
-    public List<CartItemEntity> cartItems() {
+    public List<CartItemEntity> getCartItems() {
         return cartItems;
     }
 
@@ -43,5 +43,14 @@ public class ShoppingCartEntity extends BaseEntity {
             count += cartItem.getQuantity();
         }
         return count;
+    }
+
+    public boolean containsId(Long id){
+        for (CartItemEntity cartItem : cartItems) {
+            if(cartItem.getProduct().getId().equals(id)){
+                return true;
+            }
+        }
+        return false;
     }
 }

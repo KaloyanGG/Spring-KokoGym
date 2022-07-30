@@ -287,6 +287,17 @@ input[disabled] {
     color: #111111 !important;
     background-color: #f1c50e !important;
 }
+.added-label{
+    border-style: none;
+    text-transform: uppercase;
+    background-image: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin: 20px auto 0;
+    color: #111111 !important;
+    background-color: #1fd51f !important;
+
+}
 
 .my-profile-heading {
     display: flex;
@@ -508,6 +519,7 @@ input[disabled] {
 
 .prices {
     height: 100%;
+    width:20%;
     text-align: right;
     display: flex;
     align-content: center;
@@ -520,7 +532,6 @@ input[disabled] {
 }
 
 .amount {
-    padding-top: 20px;
     font-size: 26px;
     font-family: 'Open Sans';
     font-weight: 800;
@@ -528,7 +539,6 @@ input[disabled] {
 }
 
 .remove {
-    padding-top: 5px;
     font-size: 14px;
     font-family: 'Open Sans';
     font-weight: 600;

@@ -41,4 +41,6 @@ public class CartItemEntity extends BaseEntity {
         return this;
     }
 
+
+
 }

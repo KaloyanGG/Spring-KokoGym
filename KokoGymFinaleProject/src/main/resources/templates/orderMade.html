@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta role="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!--InBrowserLink-->
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <title>Document</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar.html::nav">
+    <ul>
+        <li><a href="/static">Home</a></li>
+        <li><a href="#">Admin</a></li>
+        <li><a href="#">Group Workouts</a></li>
+        <li><a href="#">Trainers</a></li>
+        <li><a th:href="@{/shop}">Shop</a></li>
+        <li><a th:href="@{/users/login}" href="#">Login</a></li>
+        <li><a th:href="@{/users/register}">Register</a></li>
+        <li>
+            <a href="#" th:action="@{/users/logout}" th:method="post">
+                <form style="width:100%; height:100%; background: inherit"  th:action="@{/users/logout}" th:method="post">
+                    <input id="logoutInput" type="submit" th:value="LOGOUT">
+                </form>
+            </a>
+        </li>
+        <li><a href="#">My profile</a></li>
+        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg"
+                                                                  alt=""></a></li>
+    </ul>
+</nav>
+<main class="fullScreenMain" style="display: flex;justify-content: center; align-items: center;align-content: center; flex-wrap: wrap" >
+
+    <h1 style="width:100%; text-align: center; color:red">Order Made</h1>
+    <div>
+        <h2 th:text="|Order Id: ${order.id}|">Order Id: {{order.id}}</h2>
+<!--        todo: add date-->
+<!--        <h2>Order Date: {{order.date}}</h2>-->
+<!--        todo: add order total in db-->
+        <h2 th:text="|Order Total: ${#numbers.formatDecimal(order.getTotalPrice,1,2)}|" >Order Total: {{order.total}}</h2>
+        <h2>Order Items:</h2>
+        <ul>
+            <li th:each="item : ${order.orderItems}">
+                <h3 th:text="${item.product.name}">{{item.name}}</h3>
+                <h3 th:text="${item.product.price}">{{item.price}}</h3>
+                <h3 th:text="|Quantity: ${item.quantity}|">{{item.quantity}}</h3>
+            </li>
+<!--            <li>-->
+<!--                <h3>{{item.name}}</h3>-->
+<!--                <h3>{{item.price}}</h3>-->
+<!--                <h3>{{item.quantity}}</h3>-->
+<!--            </li>-->
+        </ul>
+    </div>
+
+
+
+</main>
+
+
+<footer>
+    <p>&copy 2022 - Kaloyan Georgiev</p>
+</footer>
+</body>
+</html>

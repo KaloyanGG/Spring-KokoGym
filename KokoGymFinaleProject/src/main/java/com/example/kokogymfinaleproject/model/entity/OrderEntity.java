@@ -1,6 +1,7 @@
 package com.example.kokogymfinaleproject.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,11 @@ public class OrderEntity extends BaseEntity {
     @ManyToOne(optional = false)
     private UserEntity user;
 
+//    @ManyToOne(optional = false)
+//    private DiscountEntity discountEntity;
+
     public OrderEntity() {
+        orderItems = new ArrayList<>();
     }
 
     public List<OrderItemEntity> getOrderItems() {
@@ -33,4 +38,21 @@ public class OrderEntity extends BaseEntity {
         this.user = user;
         return this;
     }
+
+    public double getTotalPrice() {
+        double totalPrice = 0;
+        for (OrderItemEntity orderItem : orderItems) {
+            totalPrice += orderItem.getProduct().getPrice() * orderItem.getQuantity();
+        }
+        return totalPrice;
+    }
+
+//    public DiscountEntity getDiscountEntity() {
+//        return discountEntity;
+//    }
+//
+//    public OrderEntity setDiscountEntity(DiscountEntity discountEntity) {
+//        this.discountEntity = discountEntity;
+//        return this;
+//    }
 }
