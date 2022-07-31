@@ -33,8 +33,18 @@
             </li>
             <li><a href="#" th:href="@{/users/myProfile}">My profile</a></li>
         </th:block>
-        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg"
-                                                                  alt=""></a></li>
+        <li style="width: 25%">
+            <a sec:authorize="isAuthenticated()" th:href="@{/shoppingCart}">
+                <img id="shopping-cart" src="../images/shoppingCartIco.jpg" alt="">
+            </a>
+            <a sec:authorize="!isAuthenticated()" th:href="@{/users/login}">
+                <img id="shopping-cart" src="../images/shoppingCartIco.jpg" alt="">
+            </a>
+
+        </li>
+
+
+
     </ul>
 </nav>
 
