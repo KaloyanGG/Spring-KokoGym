@@ -1,7 +1,14 @@
 package com.example.kokogymfinaleproject.web;
 
+import com.example.kokogymfinaleproject.model.KokoGymUserDetails;
 import com.example.kokogymfinaleproject.model.entity.TrainerEntity;
 import com.example.kokogymfinaleproject.service.UserService;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +35,23 @@ public class TrainersController {
 
         return "trainers";
 
+    }
+
+    @GetMapping("/permission")
+    public String startTrainer(@AuthenticationPrincipal KokoGymUserDetails principal){
+
+        this.userService.makeTrainer(principal);
+        principal.setAuthorities(List.of(new SimpleGrantedAuthority("ROLE_TRAINER"),
+                new SimpleGrantedAuthority("ROLE_CUSTOMER")));
+
+//        userDetails.addToAuthority(new SimpleGrantedAuthority("ROLE_TRAINER"));
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication =
+                new UsernamePasswordAuthenticationToken(principal, context.getAuthentication().getCredentials(), principal.getAuthorities());
+        context.setAuthentication(authentication);
+
+
+        return "redirect:/users/myProfile";
     }
 
 }

@@ -61,6 +61,24 @@
             </div>
         </div>
 
+        <div th:each="p : ${products}" th:object="${p}" class="product-template">
+            <img th:src="*{imageUrl}" class="shop-img" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/IMG_logo_%282017%29.svg"
+                 alt="Pic not found">
+            <div class="inside-product-template">
+                <h1 th:text="*{name}" class="shopping-cart-h1">Whey Isolate</h1>
+                <p>Price: <b th:text="${#numbers.formatDecimal(p.price,1,2)}">22.22$</b></p>
+                <th:block sec:authorize="${isAuthenticated()}">
+                    <a th:unless="${#authentication.principal.shoppingCart.containsId(p.id)}" class="add-to-cart-btn" th:href="@{/shop/addToCart/{id}(id=*{id})}" href="#">Add to Cart</a>
+                    <label th:if="${#authentication.principal.shoppingCart.containsId(p.id)}"  class="added-label">Added&#10004;</label>
+                </th:block>
+                <th:block sec:authorize="${!isAuthenticated()}">
+                    <a class="add-to-cart-btn" th:href="@{/users/login}" href="#">Add to Cart</a>
+                </th:block>
+            </div>
+        </div>
+
+<!--        todo: myProfilе validation-->
+
     </section>
 
 

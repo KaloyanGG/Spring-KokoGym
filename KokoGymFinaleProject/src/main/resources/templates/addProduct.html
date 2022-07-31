@@ -25,7 +25,8 @@
         <li><a th:href="@{/users/register}">Register</a></li>
         <li>
             <a href="#" th:action="@{/users/logout}" th:method="post">
-                <form style="width:100%; height:100%; background: inherit"  th:action="@{/users/logout}" th:method="post">
+                <form style="width:100%; height:100%; background: inherit" th:action="@{/users/logout}"
+                      th:method="post">
                     <input id="logoutInput" type="submit" th:value="LOGOUT">
                 </form>
             </a>
@@ -38,16 +39,30 @@
 <main class="fullScreenMain">
     <h1 style="text-align:center; margin:auto">Add Product</h1>
 
-    <form style="display:block; margin:auto" th:action="@{/products/add}" th:method="post">
+    <form style="display:block; margin:auto" th:action="@{/products/add}"
+          th:method="post"
+          th:object="${productModel}">
         <fieldset class="add-product-fieldset">
             <label class="formLabel" for="name">Product name:</label>
-            <input class="formInput" id="name" name="name" type="text">
+            <input th:field="*{name}" th:errorclass="invalid-input" class="formInput" id="name" name="name"
+                   type="text" th:placeholder="${#fields.hasErrors('name') ? #fields.errors('name').get(0) : ''}">
+
             <label class="formLabel" for="stockQuantity">Quantity:</label>
-            <input class="formInput" id="stockQuantity" name="stockQuantity" type="text">
+            <input th:field="*{stockQuantity}" th:errorclass="invalid-input" class="formInput" id="stockQuantity"
+                   name="stockQuantity"
+                   type="text"
+                   th:placeholder="${#fields.hasErrors('stockQuantity') ? #fields.errors('stockQuantity').get(0) : ''}">
+
             <label class="formLabel" for="imageUrl">Image url:</label>
-            <input class="formInput" id="imageUrl" name="imageUrl" type="text">
+            <input th:field="*{imageUrl}" th:errorclass="invalid-input" class="formInput" id="imageUrl"
+                   name="imageUrl"
+                   type="text"
+                   th:placeholder="${#fields.hasErrors('imageUrl') ? #fields.errors('imageUrl').get(0) : ''}">
+
             <label class="formLabel" for="price">Price for one:</label>
-            <input class="formInput" id="price" name="price" type="text">
+            <input th:field="*{price}" th:errorclass="invalid-input" class="formInput" id="price" name="price"
+                   type="text" th:placeholder="${#fields.hasErrors('price') ? #fields.errors('price').get(0) : ''}">
+
             <button class="submitBtn" type="submit">Add</button>
         </fieldset>
     </form>
@@ -60,4 +75,10 @@
     <p>&copy 2022 - Kaloyan Georgiev</p>
 </footer>
 </body>
+<!--<script>-->
+<!--    for (const el of document.getElementsByTagName("input")) {-->
+<!--        el.value="";-->
+<!--    }-->
+
+<!--</script>-->
 </html>

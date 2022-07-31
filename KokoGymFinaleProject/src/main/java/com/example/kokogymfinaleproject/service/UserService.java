@@ -46,8 +46,12 @@ public class UserService {
         this.shoppingCartRepository.save(shoppingCart);
         user.setShoppingCart(shoppingCart);
         user.setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword()));
-
         this.userRepository.save(user);
+        CustomerEntity customer = new CustomerEntity();
+        customer.setUser(user);
+        customer.setLevel(this.levelRepository.findByLevel(LevelNameEnum.BEGINNER).get());
+        this.customerRepository.save(customer);
+
     }
 
     public void init() {
@@ -174,7 +178,7 @@ public class UserService {
         if (userDTO.getTitle() == null && userDTO.getLevel() != null) {
             CustomerEntity customer = this.customerRepository.findByUserId(id).get();
             customer
-                    .setLevel(this.levelRepository.findByLevel(LevelNameEnum.valueOf(userDTO.getLevel())).get());
+                    .setLevel(this.levelRepository.findByLevel(userDTO.getLevel()).get());
             this.customerRepository.save(customer);
         } else if (userDTO.getTitle() != null && userDTO.getLevel() == null) {
             TrainerEntity trainer = this.trainerRepository.findByUserId(id).get();
@@ -254,6 +258,23 @@ public class UserService {
     public boolean containsEMail(String email) {
 
         return this.userRepository.findByEmail(email).isPresent();
+
+    }
+
+    public void makeTrainer(KokoGymUserDetails userDetails) {
+
+        UserEntity userById = this.userRepository.getById(userDetails.getId());
+
+        CustomerEntity customer=this.customerRepository.findByUserId(userDetails.getId()).get();
+        this.customerRepository.delete(customer);
+
+        TrainerEntity trainer = new TrainerEntity();
+        trainer.setUser(userById);
+        trainer.setTitle("none");
+        this.trainerRepository.save(trainer);
+
+        userById.getRoles().add(this.roleRepository.findByRole(RoleEnum.TRAINER));
+        this.userRepository.save(userById);
 
     }
 }

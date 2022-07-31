@@ -1,13 +1,12 @@
 package com.example.kokogymfinaleproject.service;
 
+import com.example.kokogymfinaleproject.model.binding.AddProductBindingModel;
 import com.example.kokogymfinaleproject.model.entity.*;
 import com.example.kokogymfinaleproject.repository.CartItemRepository;
 import com.example.kokogymfinaleproject.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -32,12 +31,16 @@ public class ProductService {
     }
 
     public List<ProductEntity> findAll() {
-
         return this.productRepository.findAll();
-
     }
 
-    public void add(ProductEntity product) {
+    public void add(AddProductBindingModel productDTO) {
+        ProductEntity product = new ProductEntity(
+                productDTO.getName(),
+                productDTO.getStockQuantity(),
+                productDTO.getPrice(),
+                productDTO.getImageUrl()
+        );
         this.productRepository.save(product);
     }
 

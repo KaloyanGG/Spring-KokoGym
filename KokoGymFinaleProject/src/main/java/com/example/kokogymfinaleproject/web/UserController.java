@@ -40,16 +40,6 @@ public class UserController {
         return "logout";
     }
 
-    @GetMapping("/stana")
-    public String stana() {
-        return "uspeh";
-    }
-
-
-    @GetMapping("/ne_stana")
-    public String neStana() {
-        return "neuspeh";
-    }
 
     @PostMapping("login-error")
     public String onFailedLogin(RedirectAttributes redirectAttributes,

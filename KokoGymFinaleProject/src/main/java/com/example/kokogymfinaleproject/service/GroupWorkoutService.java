@@ -1,5 +1,6 @@
 package com.example.kokogymfinaleproject.service;
 
+import com.example.kokogymfinaleproject.model.binding.AddGroupWorkoutBindingModel;
 import com.example.kokogymfinaleproject.model.dto.*;
 import com.example.kokogymfinaleproject.model.entity.GroupWorkoutEntity;
 import com.example.kokogymfinaleproject.model.entity.LevelEntity;
@@ -101,17 +102,23 @@ public class GroupWorkoutService {
     }
 
 
-    public void addGroupWorkout(AddGroupWorkoutDTO groupWorkoutDTO) {
+    public void addGroupWorkout(AddGroupWorkoutBindingModel groupWorkoutDTO) {
 
         GroupWorkoutEntity groupWorkoutEntity = new GroupWorkoutEntity(
                 groupWorkoutDTO.getName(),
                 groupWorkoutDTO.getPurpose(),
                 groupWorkoutDTO.getDescription(),
-                trainerRepository.findByUserUsername(groupWorkoutDTO.getUsername()),
-                levelRepository.findByLevel(LevelNameEnum.valueOf(groupWorkoutDTO.getMinLevel())).get()
+                trainerRepository.findByUserUsername(groupWorkoutDTO.getTrainerUsername()),
+                levelRepository.findByLevel(groupWorkoutDTO.getMinLevel()).get()
         );
         this.groupWorkoutsRepository.save(groupWorkoutEntity);
 
+    }
+
+
+
+    public boolean containsGroupWorkoutByName(String name) {
+        return this.groupWorkoutsRepository.findByName(name).isPresent();
     }
 }
 

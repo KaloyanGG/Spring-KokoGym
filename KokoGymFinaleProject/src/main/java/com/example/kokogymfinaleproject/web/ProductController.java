@@ -1,12 +1,17 @@
 package com.example.kokogymfinaleproject.web;
 
-import com.example.kokogymfinaleproject.model.dto.AddProductDTO;
-import com.example.kokogymfinaleproject.model.entity.ProductEntity;
+import com.example.kokogymfinaleproject.model.binding.AddProductBindingModel;
 import com.example.kokogymfinaleproject.service.ProductService;
+import org.hibernate.TypeMismatchException;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/products")
@@ -18,24 +23,33 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @ModelAttribute("productModel")
+    public AddProductBindingModel productModel() {
+        return new AddProductBindingModel();
+    }
+
+
     @GetMapping("/add")
     public String addProduct() {
         return "addProduct";
     }
 
     @PostMapping("/add")
-    public String addProductConfirm(AddProductDTO addProductDTO) {
+    public String addProductConfirm(@Valid AddProductBindingModel productModel,
+                                    BindingResult bindingResult,
+                                    RedirectAttributes redirectAttributes) {
 
-        ProductEntity product = new ProductEntity(
-                addProductDTO.getName(),
-                addProductDTO.getStockQuantity(),
-                addProductDTO.getPrice(),
-                addProductDTO.getImageUrl()
-        );
-        this.productService.add(product);
+        if (bindingResult.hasErrors()) {
 
-    //todo add categories in shop
-        return"redirect:/shop";
+            redirectAttributes.addFlashAttribute("productModel", productModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productModel",
+                    bindingResult);
+            return "redirect:/products/add";
+        }
+        this.productService.add(productModel);
+
+        //todo add categories in shop
+        return "redirect:/shop";
 
     }
 

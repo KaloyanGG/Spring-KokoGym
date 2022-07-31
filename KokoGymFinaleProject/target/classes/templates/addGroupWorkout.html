@@ -39,24 +39,45 @@
 <main class="fullScreenMain">
     <h1 style="text-align:center; margin:auto">Add group workout</h1>
 
-    <form style="display:block; margin:auto" th:action="@{/groupWorkouts/add}" th:method="post">
+    <form style="display:block; margin:auto" th:action="@{/groupWorkouts/add}"
+          th:method="post"
+          th:object="${groupWorkoutModel}">
         <fieldset class="add-product-fieldset">
             <label class="formLabel" for="name">Group workout name:</label>
-            <input class="formInput" id="name" name="name" type="text">
+
+            <input th:field="*{name}" th:errorclass="invalid-input"
+                   class="formInput" id="name" name="name" type="text"
+                   th:placeholder="${#fields.hasErrors('name') ? #fields.errors('name').get(0) : ''}">
 
             <label class="formLabel" for="purpose">Purpose:</label>
-            <input class="formInput" id="purpose" name="purpose" type="text">
+            <div>
+                <input th:field="*{purpose}" th:errorclass="invalid-input"
+                       class="formInput" id="purpose" name="purpose"
+                       type="text"
+                       th:placeholder="${#fields.hasErrors('purpose') ? #fields.errors('purpose').get(0) : '' }">
+            </div>
+
             <label class="formLabel" for="description">Description:</label>
-            <input class="formInput" id="description" name="description" type="text">
+            <input th:field="*{description}" th:errorclass="invalid-input" class="formInput" id="description"
+                   name="description" type="text"
+                   th:placeholder="${#fields.hasErrors('description') ? #fields.errors('description').get(0) : ''}">
+
             <label class="formLabel" for="minLevel">Minimum level:</label>
-            <select class="add-group-workout-select" name="minLevel" id="minLevel">
+            <select class="add-group-workout-select" th:errorclass="invalid-option-select"
+                    name="minLevel" id="minLevel" th:field="*{minLevel}">
+                <option th:text="${#fields.hasErrors('minLevel') ? #fields.errors('minLevel').get(0) : '- Select minimum level for participation -'}"
+                        value="">- Select minimum level for participation -</option>
                 <option th:each="l : ${T(com.example.kokogymfinaleproject.model.enums.LevelNameEnum).values()}"
                         th:text="${l}"
                         th:value="${l}">Level 1
                 </option>
             </select>
-            <label class="formLabel" for="username">Trainer username:</label>
-            <select class="add-group-workout-select" name="username" id="username">
+
+            <label class="formLabel" for="trainerUsername">Trainer username:</label>
+            <select class="add-group-workout-select"  th:errorclass="invalid-option-select"
+                    name="trainerUsername" id="trainerUsername" th:field="*{trainerUsername}">
+                <option th:text="${#fields.hasErrors('trainerUsername') ? #fields.errors('trainerUsername').get(0) : '- Select trainer username -'}"
+                        value="">- Select trainer username -</option>
                 <option th:each="t: ${trainers}"
                         th:text="${t.user.username}"
                         th:value="${t.user.username}">Kiro

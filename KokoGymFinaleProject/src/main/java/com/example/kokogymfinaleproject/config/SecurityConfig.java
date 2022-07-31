@@ -20,6 +20,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/users/login", "/users/register").permitAll()
+                .antMatchers("/products/add").permitAll()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .anyRequest()
                 .permitAll()

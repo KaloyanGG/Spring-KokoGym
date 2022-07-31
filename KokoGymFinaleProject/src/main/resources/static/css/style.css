@@ -219,7 +219,7 @@ input:focus {
     row-gap: 0;
 }
 
-#editProfileBtn {
+.editProfileBtn {
     background-color: #aa0404;
     color: white;
     padding: 16px 20px;
@@ -262,6 +262,7 @@ input[disabled] {
 
 .shop-img {
     height: 100%;
+    max-width:100%;
     margin: auto;
 }
 
@@ -608,6 +609,14 @@ hr {
 }
 .error{
     color:red;
+    font-size:14px;
+}
+.invalid-option-select{
+    border: 2px solid red;
+    color:gray;
+}
+option{
+    color:black;
 }
 
 

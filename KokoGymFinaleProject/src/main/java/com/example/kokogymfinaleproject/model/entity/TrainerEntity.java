@@ -19,6 +19,8 @@ public class TrainerEntity extends BaseEntity {
     private List<GroupWorkoutEntity> groupWorkouts;
 
     public TrainerEntity() {
+        this.customers = new ArrayList<>();
+        this.groupWorkouts = new ArrayList<>();
     }
 
     public TrainerEntity(UserEntity user, String title) {
