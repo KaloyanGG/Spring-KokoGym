@@ -49,30 +49,30 @@
             <p class="error" th:if="${#fields.hasErrors('username')}"  th:text="${#fields.errors('username').get(0)}">hsfgjhsdg</p>
 
             <label class="formLabel" for="email">Email:</label>
-            <input th:field="*{email}" class="formInput" id="email" name="email" type="email">
+            <input th:field="*{email}" th:errorclass="invalid-input" class="formInput" id="email" name="email" type="email">
             <p class="error" th:if="${#fields.hasErrors('email')}"  th:text="${#fields.errors('email').get(0)}">hsfgjhsdg</p>
 
             <label class="formLabel" for="password">Password:</label>
-            <input class="formInput" id="password" name="password" type="password">
+            <input th:field="*{password}" th:errorclass="invalid-input" class="formInput" id="password" name="password" type="password">
             <p class="error" th:if="${#fields.hasErrors('password')}"  th:text="${#fields.errors('password').get(0)}">hsfgjhsdg</p>
 
             <label class="formLabel" for="confirmPassword">Confirm password:</label>
-            <input class="formInput" id="confirmPassword" name="confirmPassword" type="password">
+            <input class="formInput" th:errorclass="invalid-input" id="confirmPassword" name="confirmPassword" type="password">
             <p class="error" th:if="${#fields.hasErrors('confirmPassword')}"  th:text="${#fields.errors('confirmPassword').get(0)}">hsfgjhsdg</p>
 
 
             <label for="firstName">First name:</label>
-            <input th:field="*{firstName}"  id="firstName" name="firstName" type="text">
+            <input th:field="*{firstName}" th:errorclass="invalid-input"  id="firstName" name="firstName" type="text">
             <p class="error" th:if="${#fields.hasErrors('firstName')}"  th:text="${#fields.errors('firstName').get(0)}">hsfgjhsdg</p>
 
 
             <label for="lastName">Last name:</label>
-            <input th:field="*{lastName}" id="lastName" name="lastName" type="text">
+            <input th:field="*{lastName}" th:errorclass="invalid-input" id="lastName" name="lastName" type="text">
             <p class="error" th:if="${#fields.hasErrors('lastName')}"  th:text="${#fields.errors('lastName').get(0)}">hsfgjhsdg</p>
 
 
             <label for="birthDate">Birthdate:</label>
-            <input id="birthDate" name="birthDate" type="date">
+            <input id="birthDate" th:errorclass="invalid-input" name="birthDate" type="date">
             <p class="error" th:if="${#fields.hasErrors('birthDate')}"  th:text="${#fields.errors('birthDate').get(0)}">hsfgjhsdg</p>
 
             <button type="submit" class="registerBtn">Register</button>

@@ -37,16 +37,14 @@ public class UserRegistrationController {
                                   BindingResult bindingResult,
                                   RedirectAttributes redirectAttributes) {
 
+        if (!userModel.getPassword().equals(userModel.getConfirmPassword())) {
+            bindingResult.rejectValue("confirmPassword", "confirmPassword", "Password and confirm password must match!");
+        }
+        if(this.userService.containsEMail(userModel.getEmail())) {
+            bindingResult.rejectValue("email", "email", "User with this email already exists!");
+        }
+
         if (bindingResult.hasErrors()) {
-
-            if (!userModel.getPassword().equals(userModel.getConfirmPassword())) {
-//                ObjectError error = new ObjectError("confirmPasswordN", "Password and confirm password must be the same!");
-//                bindingResult.addError(error);
-                bindingResult.rejectValue("confirmPassword", "confirmPassword", "Password and confirm password must match!");
-            }
-            //todo: start here: make the passwords errors
-            //debug bindingResult.getAllErrors()
-
             redirectAttributes.addFlashAttribute("userModel", userModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userModel",
                     bindingResult);

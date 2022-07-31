@@ -25,7 +25,8 @@
         <li><a th:href="@{/users/register}">Register</a></li>
         <li>
             <a href="#" th:action="@{/users/logout}" th:method="post">
-                <form style="width:100%; height:100%; background: inherit"  th:action="@{/users/logout}" th:method="post">
+                <form style="width:100%; height:100%; background: inherit" th:action="@{/users/logout}"
+                      th:method="post">
                     <input id="logoutInput" type="submit" th:value="LOGOUT">
                 </form>
             </a>
@@ -44,9 +45,14 @@
         <fieldset>
             <legend>Let's start our fitness journey</legend>
             <label class="formLabel" for="username">Username:</label>
-            <input class="formInput" id="username" name="username" type="text">
+            <input min="2" max="50" class="formInput" id="username" name="username" type="text">
             <label class="formLabel" for="password">Password:</label>
-            <input class="formInput" id="password" name="password" type="password">
+            <input min="2" max="20" class="formInput" id="password" name="password" type="password">
+
+            <p th:if="${bad_credentials}" class="error">
+                Invalid username or password.
+            </p>
+
             <button type="submit" class="registerBtn" value="Login">Login</button>
         </fieldset>
     </form>

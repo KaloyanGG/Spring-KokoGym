@@ -27,6 +27,7 @@ public class UserRegisterBindingModel {
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past(message = "Birth date should be in the past.")
+    @NotNull(message = "Birth date should be provided.")
     private LocalDate birthDate;
 
     public UserRegisterBindingModel() {

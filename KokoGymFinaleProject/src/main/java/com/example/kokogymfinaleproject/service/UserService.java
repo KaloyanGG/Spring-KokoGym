@@ -250,4 +250,10 @@ public class UserService {
                         .getCartItems()
         );
     }
+
+    public boolean containsEMail(String email) {
+
+        return this.userRepository.findByEmail(email).isPresent();
+
+    }
 }
