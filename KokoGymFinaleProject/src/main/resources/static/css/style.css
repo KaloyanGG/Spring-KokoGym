@@ -602,6 +602,14 @@ hr {
     color: #202020;
 }
 
+.invalid-input{
+    border: 2px solid red;
+
+}
+.error{
+    color:red;
+}
+
 
 
 

@@ -3,27 +3,40 @@ package com.example.kokogymfinaleproject.model.binding;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
-public class UserRegisterDTO {
+public class UserRegisterBindingModel {
 
+    @NotBlank(message = "Username should be provided.")
+    @Size(min = 2, max = 20, message = "Username should be between 2 and 20 characters.")
     private String username;
+    @NotBlank
+    @Size(min = 5, message = "Password should be at least 5 characters.")
     private String password;
+
     private String confirmPassword;
+    @Email(message = "User email should be valid.")
+    @NotBlank(message = "User email should be provided.")
     private String email;
+    @NotBlank
+    @Size(min = 2, max = 20, message = "First name should be between 2 and 20 characters.")
     private String firstName;
+    @NotBlank
+    @Size(min = 2, max = 20, message = "Last name should be between 2 and 20 characters.")
     private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past(message = "Birth date should be in the past.")
     private LocalDate birthDate;
 
-    public UserRegisterDTO() {
+    public UserRegisterBindingModel() {
     }
 
     public String getUsername() {
         return username;
     }
 
-    public UserRegisterDTO setUsername(String username) {
+    public UserRegisterBindingModel setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -32,7 +45,7 @@ public class UserRegisterDTO {
         return password;
     }
 
-    public UserRegisterDTO setPassword(String password) {
+    public UserRegisterBindingModel setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -41,7 +54,7 @@ public class UserRegisterDTO {
         return confirmPassword;
     }
 
-    public UserRegisterDTO setConfirmPassword(String confirmPassword) {
+    public UserRegisterBindingModel setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
         return this;
     }
@@ -50,7 +63,7 @@ public class UserRegisterDTO {
         return email;
     }
 
-    public UserRegisterDTO setEmail(String email) {
+    public UserRegisterBindingModel setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -59,7 +72,7 @@ public class UserRegisterDTO {
         return firstName;
     }
 
-    public UserRegisterDTO setFirstName(String firstName) {
+    public UserRegisterBindingModel setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -68,7 +81,7 @@ public class UserRegisterDTO {
         return lastName;
     }
 
-    public UserRegisterDTO setLastName(String lastName) {
+    public UserRegisterBindingModel setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -77,7 +90,7 @@ public class UserRegisterDTO {
         return birthDate;
     }
 
-    public UserRegisterDTO setBirthDate(LocalDate birthDate) {
+    public UserRegisterBindingModel setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
         return this;
     }

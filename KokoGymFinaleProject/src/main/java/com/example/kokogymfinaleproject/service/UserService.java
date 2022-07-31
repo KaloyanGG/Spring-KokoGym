@@ -1,7 +1,7 @@
 package com.example.kokogymfinaleproject.service;
 
 import com.example.kokogymfinaleproject.model.KokoGymUserDetails;
-import com.example.kokogymfinaleproject.model.binding.UserRegisterDTO;
+import com.example.kokogymfinaleproject.model.binding.UserRegisterBindingModel;
 import com.example.kokogymfinaleproject.model.dto.UpdateUserDTO;
 import com.example.kokogymfinaleproject.model.entity.*;
 import com.example.kokogymfinaleproject.model.enums.LevelNameEnum;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -41,12 +40,12 @@ public class UserService {
         this.cartItemRepository = cartItemRepository;
     }
 
-    public void register(UserRegisterDTO userRegisterDTO) {
-        UserEntity user = this.mapper.map(userRegisterDTO, UserEntity.class);
+    public void register(UserRegisterBindingModel userRegisterBindingModel) {
+        UserEntity user = this.mapper.map(userRegisterBindingModel, UserEntity.class);
         ShoppingCartEntity shoppingCart = new ShoppingCartEntity();
         this.shoppingCartRepository.save(shoppingCart);
         user.setShoppingCart(shoppingCart);
-        user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+        user.setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword()));
 
         this.userRepository.save(user);
     }

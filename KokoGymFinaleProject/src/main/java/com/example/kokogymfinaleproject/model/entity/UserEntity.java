@@ -17,6 +17,7 @@ public class UserEntity extends BaseEntity {
     private String password;
     @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String lastName;
     @Column(nullable = false)
     private LocalDate birthDate;

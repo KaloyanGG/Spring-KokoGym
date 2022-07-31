@@ -25,7 +25,8 @@
         <li><a th:href="@{/users/register}">Register</a></li>
         <li>
             <a href="#" th:action="@{/users/logout}" th:method="post">
-                <form style="width:100%; height:100%; background: inherit"  th:action="@{/users/logout}" th:method="post">
+                <form style="width:100%; height:100%; background: inherit" th:action="@{/users/logout}"
+                      th:method="post">
                     <input id="logoutInput" type="submit" th:value="LOGOUT">
                 </form>
             </a>
@@ -38,23 +39,42 @@
 <main class="fullScreenMain">
     <h1 style="text-align:center; margin:auto">Register page</h1>
 
-    <form class="loginRegisterForm" style="display:block; margin:auto" th:action="@{/users/register}" th:method="post">
+    <form class="loginRegisterForm" style="display:block; margin:auto"
+          th:action="@{/users/register}" th:method="post" th:object="${userModel}" >
         <fieldset>
             <legend>Let's start our fitness journey</legend>
             <label class="formLabel" for="username">Username:</label>
-            <input class="formInput" id="username" name="username" type="text">
+            <input th:field="*{username}" th:errorclass="invalid-input"
+                    class="formInput" id="username" name="username" type="text">
+            <p class="error" th:if="${#fields.hasErrors('username')}"  th:text="${#fields.errors('username').get(0)}">hsfgjhsdg</p>
+
             <label class="formLabel" for="email">Email:</label>
-            <input class="formInput" id="email" name="email" type="email">
+            <input th:field="*{email}" class="formInput" id="email" name="email" type="email">
+            <p class="error" th:if="${#fields.hasErrors('email')}"  th:text="${#fields.errors('email').get(0)}">hsfgjhsdg</p>
+
             <label class="formLabel" for="password">Password:</label>
             <input class="formInput" id="password" name="password" type="password">
-            <label class="formLabel" for="passwordConfirm">Confirm password:</label>
-            <input class="formInput" id="passwordConfirm" name="passwordConfirm" type="password">
+            <p class="error" th:if="${#fields.hasErrors('password')}"  th:text="${#fields.errors('password').get(0)}">hsfgjhsdg</p>
+
+            <label class="formLabel" for="confirmPassword">Confirm password:</label>
+            <input class="formInput" id="confirmPassword" name="confirmPassword" type="password">
+            <p class="error" th:if="${#fields.hasErrors('confirmPassword')}"  th:text="${#fields.errors('confirmPassword').get(0)}">hsfgjhsdg</p>
+
+
             <label for="firstName">First name:</label>
-            <input id="firstName" name="firstName" type="text">
+            <input th:field="*{firstName}"  id="firstName" name="firstName" type="text">
+            <p class="error" th:if="${#fields.hasErrors('firstName')}"  th:text="${#fields.errors('firstName').get(0)}">hsfgjhsdg</p>
+
+
             <label for="lastName">Last name:</label>
-            <input id="lastName" name="lastName" type="text">
+            <input th:field="*{lastName}" id="lastName" name="lastName" type="text">
+            <p class="error" th:if="${#fields.hasErrors('lastName')}"  th:text="${#fields.errors('lastName').get(0)}">hsfgjhsdg</p>
+
+
             <label for="birthDate">Birthdate:</label>
             <input id="birthDate" name="birthDate" type="date">
+            <p class="error" th:if="${#fields.hasErrors('birthDate')}"  th:text="${#fields.errors('birthDate').get(0)}">hsfgjhsdg</p>
+
             <button type="submit" class="registerBtn">Register</button>
 
         </fieldset>
