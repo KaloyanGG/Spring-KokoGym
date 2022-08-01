@@ -13,6 +13,7 @@ import com.example.kokogymfinaleproject.repository.TrainerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,7 @@ public class GroupWorkoutService {
                 .findAll()
                 .stream()
                 .map(this::map)
+                .sorted(Comparator.comparing(GroupWorkoutDTO::getName))
                 .collect(Collectors.toList());
     }
     private GroupWorkoutDTO map(GroupWorkoutEntity groupWorkoutEntity) {
@@ -64,7 +66,7 @@ public class GroupWorkoutService {
     public void init() {
 
         GroupWorkoutEntity groupWorkout1 = new GroupWorkoutEntity(
-                "GroupWorkout",
+                "BGroupWorkout",
                 "WeightLoss",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae mi eu risus semper elementum facilisis a est. Donec elementum dignissim bibendum. In efficitur pharetra auctor. Nulla congue, sem quis tempor faucibus, ante nunc molestie dui, at iaculis nulla est sed eros. Sed sagittis non ante ut rutrum. Maecenas lobortis purus id risus fermentum dictum. Morbi ex risus, ullamcorper rhoncus massa at, finibus commodo libero. Praesent vitae mi nulla. Nulla congue auctor leo, eget laoreet dui mattis nec. In eleifend at lacus a tristique. Maecenas scelerisque eu lectus sit amet convallis. Nulla interdum condimentum purus vel tincidunt. Nullam non sem.",
                 trainerRepository.findById(1L).get(),
@@ -73,7 +75,7 @@ public class GroupWorkoutService {
         this.groupWorkoutsRepository.save(groupWorkout1);
 
         GroupWorkoutEntity groupWorkout2 = new GroupWorkoutEntity(
-                "GroupWorkout2",
+                "AGroupWorkout2",
                 "MuscleGain",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae mi eu risus semper elementum facilisis a est. Donec elementum dignissim bibendum. In efficitur pharetra auctor. Nulla congue, sem quis tempor faucibus, ante nunc molestie dui, at iaculis nulla est sed eros. Sed sagittis non ante ut rutrum. Maecenas lobortis purus id risus fermentum dictum. Morbi ex risus, ullamcorper rhoncus massa at, finibus commodo libero. Praesent vitae mi nulla. Nulla congue auctor leo, eget laoreet dui mattis nec. In eleifend at lacus a tristique. Maecenas scelerisque eu lectus sit amet convallis. Nulla interdum condimentum purus vel tincidunt. Nullam non sem.",
                 trainerRepository.findById(2L).get(),
@@ -82,7 +84,7 @@ public class GroupWorkoutService {
         this.groupWorkoutsRepository.save(groupWorkout2);
 
         GroupWorkoutEntity groupWorkout3 = new GroupWorkoutEntity(
-                "GroupWorkout3",
+                "ZGroupWorkout3",
                 "CardioImprovement",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae mi eu risus semper elementum facilisis a est. Donec elementum dignissim bibendum. In efficitur pharetra auctor. Nulla congue, sem quis tempor faucibus, ante nunc molestie dui, at iaculis nulla est sed eros. Sed sagittis non ante ut rutrum. Maecenas lobortis purus id risus fermentum dictum. Morbi ex risus, ullamcorper rhoncus massa at, finibus commodo libero. Praesent vitae mi nulla. Nulla congue auctor leo, eget laoreet dui mattis nec. In eleifend at lacus a tristique. Maecenas scelerisque eu lectus sit amet convallis. Nulla interdum condimentum purus vel tincidunt. Nullam non sem.",
                 trainerRepository.findById(2L).get(),
@@ -91,7 +93,7 @@ public class GroupWorkoutService {
         this.groupWorkoutsRepository.save(groupWorkout3);
 
         GroupWorkoutEntity groupWorkout4 = new GroupWorkoutEntity(
-                "GroupWorkout4",
+                "MGroupWorkout4",
                 "SomeGroupWorkout",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae mi eu risus semper elementum facilisis a est. Donec elementum dignissim bibendum. In efficitur pharetra auctor. Nulla congue, sem quis tempor faucibus, ante nunc molestie dui, at iaculis nulla est sed eros. Sed sagittis non ante ut rutrum. Maecenas lobortis purus id risus fermentum dictum. Morbi ex risus, ullamcorper rhoncus massa at, finibus commodo libero. Praesent vitae mi nulla. Nulla congue auctor leo, eget laoreet dui mattis nec. In eleifend at lacus a tristique. Maecenas scelerisque eu lectus sit amet convallis. Nulla interdum condimentum purus vel tincidunt. Nullam non sem.",
                 trainerRepository.findById(3L).get(),

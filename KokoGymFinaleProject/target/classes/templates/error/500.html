@@ -37,28 +37,11 @@
     </ul>
 </nav>
 
-<main class="fullScreenMain">
-    <h1>Trainers</h1>
-    <section class="trainers-section">
-        <div th:each="t : ${trainers}" th:object="${t}" class="trainer-card">
-            <img class="trainer-img"
-                 src="https://media.gettyimages.com/photos/happy-personal-trainer-working-at-the-gym-picture-id852401732?s=612x612"
-                 th:src="*{user.imageUrl}"
-                 alt="Not Found">
-            <div class="trainer-info">
-                <h1 th:text="*{user.fullName}" >Daniel Macher</h1>
-                <h3 th:text="*{title}" style="opacity: 0.6">Fitness Coordinator</h3>
-<!--                <p th:text="*{user.birthDate}"> Birthdate: 20.01.1978</p>-->
-<!--                <p>Group workouts:-->
-<!--                    <span th:each="gw : *{groupWorkouts}" th:text="|${gw.name} |">Zumba</span>-->
-<!--                </p>-->
-                <h1  class="trainer-details" >
-                    <a th:href="@{/trainers/{id}(id=*{id})}" href="#">Details</a>
-                </h1>
-            </div>
-        </div>
+<main class="fullScreenMain" style="display: flex; align-items: center; justify-content: center">
+    <h1 style="text-align: center">
 
-    </section>
+        SOMETHING WENT TERRIBLY WRONG.
+    </h1>
 
 
 </main>

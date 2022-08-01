@@ -61,6 +61,7 @@ public class UserService {
                     .setLastName("Georgiev")
                     .setEmail("shefa@mail.com")
                     .setUsername("shefa")
+                    .setImageUrl("https://toppng.com/uploads/preview/boss-baby-1-115628583062lbof9qtgg.png")
                     .setPassword(this.passwordEncoder.encode("shefapass"))
                     .setShoppingCart(this.shoppingCartRepository.findAll().get(0))
                     .setRoles(this.roleRepository.findAll())

@@ -184,10 +184,9 @@ input:focus {
 #myProfilePicture {
     max-width: 50%;
     max-height: 22.5%;
-    border: 1px solid #110c0c;
+    /*border: 1px solid #110c0c;*/
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10px auto 10px auto;
 }
 
 #myProfileInfo {
@@ -215,8 +214,8 @@ input:focus {
 .myProfileFieldSet {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(8, 7vh);
-    row-gap: 0;
+    grid-template-rows: repeat(7, 7vh);
+
 }
 
 .editProfileBtn {
@@ -368,6 +367,11 @@ input[disabled] {
 
 .trainer-info > * {
     text-align: center;
+}
+.trainer-details>a{
+    border: 1px dotted #283f8c;
+    text-decoration: none;
+    background: pink;
 }
 
 .groupWorkouts-section {
@@ -618,6 +622,7 @@ hr {
 option{
     color:black;
 }
+
 
 
 

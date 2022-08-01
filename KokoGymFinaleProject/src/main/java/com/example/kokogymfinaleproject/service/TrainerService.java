@@ -20,4 +20,8 @@ public class TrainerService {
         return trainerRepository.findAll();
 
     }
+
+    public TrainerEntity findTrainerById(Long id) {
+        return trainerRepository.findById(id).orElse(null);
+    }
 }

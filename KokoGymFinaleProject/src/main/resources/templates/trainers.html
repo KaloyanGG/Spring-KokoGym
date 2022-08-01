@@ -46,12 +46,15 @@
                  th:src="*{user.imageUrl}"
                  alt="Not Found">
             <div class="trainer-info">
-                <h1 th:text="*{user.fullName}" >Foncho Ciganina</h1>
+                <h1 th:text="*{user.fullName}" >Daniel Macher</h1>
                 <h3 th:text="*{title}" style="opacity: 0.6">Fitness Coordinator</h3>
-                <p th:text="*{user.birthDate}"> Birthdate: 20.01.1978</p>
-                <p>Group workouts:
-                    <span th:each="gw : *{groupWorkouts}" th:text="|${gw.name} |">Zumba</span>
-                </p>
+<!--                <p th:text="*{user.birthDate}"> Birthdate: 20.01.1978</p>-->
+<!--                <p>Group workouts:-->
+<!--                    <span th:each="gw : *{groupWorkouts}" th:text="|${gw.name} |">Zumba</span>-->
+<!--                </p>-->
+                <h1  class="trainer-details" >
+                    <a th:href="@{/trainers/{id}(id=*{id})}" href="#">Details</a>
+                </h1>
             </div>
         </div>
 

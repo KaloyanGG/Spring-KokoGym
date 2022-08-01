@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta role="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!--InBrowserLink-->
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title>Index</title>
+</head>
+<body>
+<!--th:replace="fragments/navbar.html::nav"-->
+<nav th:replace="fragments/navbar.html::nav">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Admin</a></li>
+        <li><a href="#">Group Workouts</a></li>
+        <li><a href="#">Trainers</a></li>
+        <li><a th:href="@{/shop}">Shop</a></li>
+        <li><a th:href="@{/users/login}" href="#">Login</a></li>
+        <li><a th:href="@{/users/register}">Register</a></li>
+        <li>
+            <a href="#" th:action="@{/users/logout}" th:method="post">
+                <form style="width:100%; height:100%; background: inherit" th:action="@{/users/logout}"
+                      th:method="post">
+                    <input id="logoutInput" value="LOGOUT" type="submit" th:value="LOGOUT">
+                </form>
+            </a>
+        </li>
+        <li><a href="#">My profile</a></li>
+        <li style="width: 25%"><a th:href="@{/shoppingCart}"><img id="shopping-cart" src="../images/shoppingCartIco.jpg"
+                                                                  alt=""></a></li>
+    </ul>
+</nav>
+
+<main style="display: flex; " class="fullScreenMain">
+
+    <section id="myProfileSection" th:object="${trainer}">
+
+        <th:block th:if="${trainer.user.imageUrl==null}">
+            <img id="myProfilePicture"
+                 src="https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-12.jpg"
+                 alt="NO PIC">
+        </th:block>
+        <th:block th:if="${trainer.user.imageUrl!=null}">
+            <img id="myProfilePicture"
+                 th:src="${trainer.user.imageUrl}"
+                 alt="Picture not found">
+        </th:block>
+
+
+        <form class="myProfileForm" style="width: 90%; height: 50%" th:action="@{/users/myProfile}" th:method="post">
+            <fieldset class="myProfileFieldSet">
+                <label class="formLabel" for="username">Username:</label>
+                <p style="align-self: center" th:text="*{user.username}" id="username"></p>
+                <label class="formLabel" for="email">Email:</label>
+                <p style="align-self: center" th:text="*{user.email}" id="email"></p>
+                <label class="formLabel" for="firstName">First name:</label>
+                <p style="align-self: center" th:text="*{user.firstName}" id="firstName"></p>
+
+                <label class="formLabel" for="lastName">Last name:</label>
+                <p style="align-self: center" th:text="*{user.lastName}" id="lastName"></p>
+
+                <label class="formLabel" for="birthDate">Birthdate:</label>
+                <p style="align-self: center" th:text="*{user.birthDate}" id="birthDate"></p>
+
+                <label class="formLabel" for="title">Title:</label>
+                <p style="align-self: center" th:text="*{title}" id="title"></p>
+
+                <label class="formLabel" for="title">Group Workouts:</label>
+                <p style="align-self: center">
+                    <span th:each="gw : *{groupWorkouts}"
+                          th:text="|${gw.name} |">
+                        Zumba, Rumba, chamba, famba, ranba
+                    </span>
+                </p>
+
+            </fieldset>
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>&copy 2022 - Kaloyan Georgiev</p>
+</footer>
+
+</body>
+
+
+</html>

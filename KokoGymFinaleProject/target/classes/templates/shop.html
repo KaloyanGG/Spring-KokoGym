@@ -40,7 +40,7 @@
 <main>
     <div class="my-profile-heading">
         <h1>Shop</h1>
-        <a sec:authorize="hasRole('BOSS')" class="add-new-product-a" th:href="@{/products/add}">ADD NEW PRODUCT</a>
+        <a sec:authorize="hasAnyRole('BOSS','TRAINER')" class="add-new-product-a" th:href="@{/products/add}">ADD NEW PRODUCT</a>
     </div>
     <section id="shop-section">
 

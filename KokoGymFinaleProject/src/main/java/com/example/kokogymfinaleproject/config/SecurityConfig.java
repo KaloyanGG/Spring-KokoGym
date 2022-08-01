@@ -1,5 +1,6 @@
 package com.example.kokogymfinaleproject.config;
 
+import com.example.kokogymfinaleproject.model.enums.RoleEnum;
 import com.example.kokogymfinaleproject.repository.UserRepository;
 import com.example.kokogymfinaleproject.service.KokoGymUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -19,19 +20,32 @@ public class SecurityConfig {
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/users/login", "/users/register").permitAll()
-                .antMatchers("/products/add").permitAll()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .anyRequest()
-                .permitAll()
-           .and()
+                .antMatchers("/").permitAll()
+                .antMatchers("/users/login", "/users/register").anonymous()
+                .antMatchers("/users/logout","/users/myProfile").authenticated()
+                .antMatchers("/products/add").hasAnyRole(RoleEnum.BOSS.name(), RoleEnum.TRAINER.name())
+                .antMatchers("/trainers/permission").not().hasAnyRole(RoleEnum.BOSS.name(), RoleEnum.TRAINER.name())
+                .antMatchers("/groupWorkouts/add").hasRole(RoleEnum.BOSS.name())
+                .antMatchers("/shoppingCart/**").authenticated()
+                .antMatchers("/shop/addToCart").authenticated()
+                .antMatchers("/products/**").authenticated()
+                .antMatchers("/orders/**").authenticated()
+                .antMatchers("/api/**").permitAll()
+
+
+//                .anyRequest().permitAll()
+
+
+
+                .and()
                 .formLogin()
                 .loginPage("/users/login")
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                 .defaultSuccessUrl("/")
                 .failureForwardUrl("/users/login-error")
-           .and()
+                .and()
                 .logout()
                 .logoutUrl("/users/logout")
                 .logoutSuccessUrl("/")
