@@ -22,7 +22,6 @@ public class DiscountScheduler {
 
     public DiscountScheduler(ProductService productService) {
         this.productService = productService;
-//        this.products = new ArrayList<>();
     }
 
     @Scheduled(initialDelay = 5000, fixedDelay = 20000)
