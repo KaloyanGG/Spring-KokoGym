@@ -69,4 +69,8 @@ public class ProductService {
             this.productRepository.save(productEntity);
         }
     }
+
+    public void save(ProductEntity product) {
+        this.productRepository.save(product);
+    }
 }

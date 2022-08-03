@@ -22,17 +22,28 @@ public class DiscountScheduler {
 
     public DiscountScheduler(ProductService productService) {
         this.productService = productService;
+//        this.products = new ArrayList<>();
     }
 
-
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(initialDelay = 5000, fixedDelay = 20000)
     public void scheduleFixedDelayTask() {
 
+        if(products != null) {
+            for(ProductEntity product: products){
+                product.setPrice(product.getPrice()*2);
+                productService.save(product);
+            }
+        }
         this.products = new ArrayList<>();
         List<ProductEntity> all = productService.findAll();
         if (all.size() > 2) {
             Arrays.stream(giveThreeRandomNumbersBetweenWithoutRepetition(0, all.size() - 1))
                     .forEach(num -> products.add(all.get(num)));
+
+            for (ProductEntity product : products) {
+                product.setPrice(product.getPrice()/2);
+                productService.save(product);
+            }
 
             System.out.println(products);
         }

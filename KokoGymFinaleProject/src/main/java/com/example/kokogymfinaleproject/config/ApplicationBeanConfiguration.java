@@ -1,20 +1,10 @@
 package com.example.kokogymfinaleproject.config;
 
-import com.example.kokogymfinaleproject.repository.UserRepository;
-import com.example.kokogymfinaleproject.service.KokoGymUserDetailsService;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class ApplicationBeanConfiguration {
@@ -30,10 +20,6 @@ public class ApplicationBeanConfiguration {
     }
 
 
-//    @Scheduled(fixedDelay = 1000)
-//    public void scheduleFixedDelayTask() {
-//        System.out.println("HELLOOOO");
-//    }
 
 
 }
