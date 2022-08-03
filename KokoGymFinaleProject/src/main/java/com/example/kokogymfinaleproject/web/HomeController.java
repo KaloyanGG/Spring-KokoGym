@@ -18,10 +18,12 @@ public class HomeController {
     @GetMapping("/")
     public String index(@AuthenticationPrincipal KokoGymUserDetails user) {
 
+        // if user is not logged in, redirect to home page
         if (user != null) {
             return "home";
         }
 
+        // if user is logged in, redirect to index page
         return "index";
     }
 

@@ -23,7 +23,7 @@
             <div th:each="p, iStat : ${@discountScheduler.getProducts()}" th:object="${p}"
                  class="carousel-item" th:classappend="${iStat.first ? 'active': ''}">
                 <img class="d-block m-auto" th:src="*{imageUrl}" src="https://bit.ly/3PVKmn0" alt="First slide">
-                <div style="height: 30%" class="carousel-caption d-none d-md-block text-danger bg-dark p-1">
+                <div style="height: 25%" class="carousel-caption d-none d-md-block text-danger bg-dark p-1">
                     <h5 th:text="*{name}">Whey Protein</h5>
                     <h6 style="text-decoration: line-through"
                         th:text="|Old price: ${#numbers.formatDecimal(p.price*2,1,2)}|">

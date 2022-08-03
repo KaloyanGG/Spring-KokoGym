@@ -6,15 +6,29 @@
 
 html,
 body {
-    height: 100%;
-    min-height: 100%;
+    padding:0;
+    /*height: 100%;*/
+    /*min-height: 100%;*/
     font-family: sans-serif;
     background-color: #fff;
+}
+/*body { min-height: 100vh; }*/
+
+
+
+main {
+    margin: auto;
+    /*height: 100%;*/
+    min-height: 90vh;
+    background-color: #dbe5a8;
+    width: 70%;
+    float: left;
+    padding: 1%;
 }
 
 nav {
     background: red;
-    height: 5.5vh;
+    height: 5vh;
     font-size: 14px;
 }
 
@@ -71,29 +85,20 @@ footer {
     display: flex;
     font-size: 20px;
     justify-content: center;
-    height: 7vh;
+    height: 5vh;
     width: 100%;
 }
 
-main {
-    margin: auto;
-    min-height: 90%;
-    background-color: #dbe5a8;
-    width: 70%;
-    float: left;
-    padding: 1%;
-}
 
 aside {
     width: 25%;
     background: yellow;
-    height: 50vh;
+    height: 75vh;
     float: right;
     right: 0;
     position: sticky;
     top: 0;
-    transform: translateY(50%);
-
+    transform: translateY(10%);
 
 }
 
