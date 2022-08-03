@@ -20,6 +20,10 @@ public class KokoGymUserDetails implements UserDetails {
 
     private ShoppingCartEntity shoppingCart;
     private Collection<GrantedAuthority> authorities;
+
+    public KokoGymUserDetails() {
+    }
+
     public KokoGymUserDetails(Long id, String password, String username, String email, String firstName, String lastName, LocalDate birthDate, String imageUrl, ShoppingCartEntity shoppingCart, Collection<GrantedAuthority> authorities) {
         this.id = id;
         this.password = password;

@@ -23,9 +23,11 @@ public class ProductService {
     public void init() {
 
         this.productRepository.saveAll(List.of(
-                new ProductEntity("Whey Protein", 5, 30.99, "https://contents.mediadecathlon.com/p2118149/k$02c8b907f267ffb6eed898b2d43cf321/protein-whey-900-g-shokolad.jpg?format=auto&quality=40&f=800x800"),
-                new ProductEntity("Creatine Monohidrate", 50, 50.89, "https://m.media-amazon.com/images/I/71N9eavAZPL._SY550_.jpg"),
-                new ProductEntity("Fatburner", 90, 101.00, "https://hranitelnidobavki.bg/wp-content/uploads/BT-864-mega-fat-burner-90-caps-1-247x296.jpg")
+                new ProductEntity("Whey Protein", 5, 30.99, "https://bit.ly/3Jq85JR"),
+                new ProductEntity("Creatine Monohidrate", 50, 50.89, "https://bit.ly/3QiliGN"),
+                new ProductEntity("Fatburner", 90, 101.00, "https://bit.ly/3PVKmn0"),
+                new ProductEntity("BCAA", 12, 200.00, "https://bit.ly/3zTv4tu"),
+                new ProductEntity("Trenbolone Acetate", 20, 50.00, "https://bit.ly/3Sp0dfo")
         ));
 
     }

@@ -11,7 +11,8 @@ public class GroupWorkoutEntity extends BaseEntity {
     private String name;
     @Column(nullable = false)
     private String purpose;
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false, length = 100000)
+    @Lob
     private String description;
 
     @ManyToOne(optional = false)

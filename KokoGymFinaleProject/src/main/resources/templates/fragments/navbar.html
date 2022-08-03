@@ -14,7 +14,6 @@
 <nav th:fragment="nav">
     <ul>
         <li><a href="/">Home</a></li>
-        <li sec:authorize="hasRole('BOSS')"><a th:href="@{/admin}" href="#">Admin</a></li>
         <li><a th:href="@{/groupWorkouts}" href="#">Group Workouts</a></li>
         <li><a th:href="@{/trainers}" href="/trainers">Trainers</a></li>
         <li><a th:href="@{/shop}">Shop</a></li>

@@ -33,10 +33,7 @@ public class SecurityConfig {
                 .antMatchers("/orders/**").authenticated()
                 .antMatchers("/api/**").permitAll()
 
-
 //                .anyRequest().permitAll()
-
-
 
                 .and()
                 .formLogin()
@@ -45,6 +42,7 @@ public class SecurityConfig {
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                 .defaultSuccessUrl("/")
                 .failureForwardUrl("/users/login-error")
+
                 .and()
                 .logout()
                 .logoutUrl("/users/logout")

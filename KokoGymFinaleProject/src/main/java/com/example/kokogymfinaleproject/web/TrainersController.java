@@ -35,11 +35,8 @@ public class TrainersController {
     public String trainers(Model model) {
 
         List<TrainerEntity> trainers = this.userService.findAllTrainers();
-
         model.addAttribute("trainers", trainers);
-
         return "trainers";
-
     }
 
     @GetMapping("/{id}")
@@ -66,6 +63,8 @@ public class TrainersController {
         return modelAndView;
 
     }
+
+    //todo: maybe use events or paging
 
     @GetMapping("/permission")
     public String startTrainer(@AuthenticationPrincipal KokoGymUserDetails principal) {

@@ -1,8 +1,10 @@
 package com.example.kokogymfinaleproject.web;
 
+import com.example.kokogymfinaleproject.model.KokoGymUserDetails;
 import com.example.kokogymfinaleproject.model.binding.AddProductBindingModel;
 import com.example.kokogymfinaleproject.service.ProductService;
 import org.hibernate.TypeMismatchException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,7 @@ public class ProductController {
 
 
     @GetMapping("/add")
-    public String addProduct() {
+    public String addProduct(@AuthenticationPrincipal KokoGymUserDetails principal) {
         return "addProduct";
     }
 

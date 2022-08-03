@@ -6,6 +6,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +28,12 @@ public class ApplicationBeanConfiguration {
     public PasswordEncoder passwordEncoder() {
         return new Pbkdf2PasswordEncoder();
     }
+
+
+//    @Scheduled(fixedDelay = 1000)
+//    public void scheduleFixedDelayTask() {
+//        System.out.println("HELLOOOO");
+//    }
 
 
 }

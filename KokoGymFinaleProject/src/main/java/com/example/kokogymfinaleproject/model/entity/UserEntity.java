@@ -23,7 +23,8 @@ public class UserEntity extends BaseEntity {
     private LocalDate birthDate;
     @OneToOne
     private ShoppingCartEntity shoppingCart;
-    @Column(unique = true, columnDefinition = "TEXT")
+    @Column(unique = true, length = 100000)
+    @Lob
     private String imageUrl;
 
     @ManyToMany(fetch = FetchType.EAGER)

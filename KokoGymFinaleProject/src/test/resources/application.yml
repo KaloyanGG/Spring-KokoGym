@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        dialect: org.hibernate.dialect.HSQLDialect
+    database-platform: org.hibernate.dialect.HSQLDialect
+  sql:
+    init:
+      mode: never
+
+
