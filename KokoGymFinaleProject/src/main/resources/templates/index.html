@@ -109,8 +109,8 @@
                         Then you may take a test and finally begin your journey as your job.
                     </p>
                     <a href="#" th:href="@{/trainers}" class="text-decoration-none">
-                        <button class="btn btn-block btn-link btn-outline-dark">
-                            Check our trainers here
+                        <button class="btn btn-block btn-outline-dark sexy-green-button font-weight-bold">
+                        Check our trainers here
                         </button>
                     </a>
 
@@ -124,8 +124,9 @@
                         led by our educated and ready team.
                     </p>
                     <a href="#" th:href="@{/groupWorkouts}" class="text-decoration-none">
-                        <button class="btn btn-block btn-link btn-outline-dark">
-                            Check our group workouts here
+                        <button class="btn btn-block btn-outline-dark sexy-green-button font-weight-bold">
+
+                        Check our group workouts here
                         </button>
                     </a>
                 </div>
@@ -140,8 +141,8 @@
                     </p>
 
                     <a href="#" th:href="@{/shop}" class="text-decoration-none">
-                        <button class="btn btn-block btn-link btn-outline-dark">
-                            Check the shop here
+                        <button class="btn btn-block btn-outline-dark sexy-green-button font-weight-bold">
+                        Check the shop here
                         </button>
                     </a>
                 </div>
@@ -200,7 +201,7 @@
                  class="carousel-item active" th:classappend="${iStat.first ? 'active': ''}">
                 <img class="d-block m-auto" th:src="*{imageUrl}" src="https://bit.ly/3PVKmn0" alt="First slide">
                 <div style="height: 25%" class="carousel-caption d-none d-md-block text-danger bg-dark p-1">
-                    <h5 th:text="*{name}">Whey Protein</h5>
+                    <h5 style="color:rgb(234, 239, 239); " th:text="*{name}">Whey Protein</h5>
                     <h6 style="text-decoration: line-through"
                         th:text="|Old price: ${#numbers.formatDecimal(p.price*2,1,2)}|">
                         Old price: 11.10
@@ -210,8 +211,8 @@
                     </h4>
                     <th:block sec:authorize="${isAuthenticated()}">
                         <a th:unless="${#authentication.principal.shoppingCart.containsId(p.id)}"
-                           href="#" th:href="@{/shop/addToCart/{id}(id=*{id})}">
-                            <button class="btn-block btn-primary">Add to cart</button>
+                           href="#" class="text-decoration-none" th:href="@{/shop/addToCart/{id}(id=*{id})}">
+                            <button id="discount-add-to-cart-button" class="btn-block sexy-green-button text-decoration-none">Add to cart</button>
                         </a>
                         <label th:if="${#authentication.principal.shoppingCart.containsId(p.id)}"
                                class="added-label">Added&#10004;</label>

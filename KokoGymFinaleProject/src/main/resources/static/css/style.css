@@ -10,24 +10,30 @@ body {
     /*height: 100%;*/
     /*min-height: 100%;*/
     font-family: sans-serif;
-    background-color: #fff;
+    color:rgb(234, 239, 239);
+    background-color: rgb(16, 22, 22);
 }
 /*body { min-height: 100vh; }*/
-
+.sexy-green-button {
+    color:black;
+    background-color: #8daa29;
+}
 
 
 main {
     margin: auto;
     /*height: 100%;*/
     min-height: 90vh;
-    background-color: #dbe5a8;
+    /*background-color: #dbe5a8;*/
+
     width: 70%;
     float: left;
     padding: 1%;
+    color:rgb(234, 239, 239);
 }
 
 nav {
-    background: red;
+    background: #992525;
     height: 5vh;
     font-size: 14px;
 }
@@ -65,10 +71,13 @@ nav ul li a {
     justify-content: center;
 
 }
+a:hover{
+    text-decoration: none;
+}
 
 nav ul li a:hover {
-    background-color: lightblue;
-    color: black;
+    background-color: rgb(207, 54, 54);
+    color:rgb(234, 239, 239);
 }
 
 nav ul li img {
@@ -92,7 +101,8 @@ footer {
 
 aside {
     width: 25%;
-    background: yellow;
+    background: #992525;
+
     height: 75vh;
     float: right;
     right: 0;
@@ -171,13 +181,13 @@ input:focus {
 }
 
 .welcome {
-    border: 1px solid #110c0c;
     width: 25%;
     float: right;
     display: block;
     margin: 1vh;
     font-style: italic;
     font-size: 25px;
+    color:rgb(234, 239, 239);
 }
 
 #myProfileSection {
@@ -629,20 +639,20 @@ option{
     color:black;
 }
 .carousel{
-    border: 2px solid red;
+
     height: 90%
 }
 .carousel-inner{
-    border: 2px solid black;
+    /*border: 2px solid #8daa29;*/
     height: 100%;
 }
 .carousel-item{
-    border: 2px solid green;
+    /*border: 2px solid green;*/
     height: 100%;
 }
 .carousel-inner img{
     margin-top:auto;
-    border: 2px solid blue;
+    /*border: 2px solid blue;*/
     height: 60%;
     max-height: 60%;
     max-width: 100%;
@@ -652,19 +662,7 @@ option{
 }
 
 
+#discount-add-to-cart-button:hover {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    font-weight: bold;
+}
