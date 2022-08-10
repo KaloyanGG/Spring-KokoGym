@@ -72,7 +72,7 @@
 
 
             <label for="birthDate">Birthdate:</label>
-            <input id="birthDate" th:errorclass="invalid-input" name="birthDate" type="date">
+            <input th:field="*{birthDate}" id="birthDate" th:errorclass="invalid-input" name="birthDate" type="date">
             <p class="error" th:if="${#fields.hasErrors('birthDate')}"  th:text="${#fields.errors('birthDate').get(0)}">hsfgjhsdg</p>
 
             <button type="submit" class="registerBtn">Register</button>

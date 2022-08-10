@@ -24,7 +24,7 @@
                  class="carousel-item" th:classappend="${iStat.first ? 'active': ''}">
                 <img class="d-block m-auto" th:src="*{imageUrl}" src="https://bit.ly/3PVKmn0" alt="First slide">
                 <div style="height: 25%" class="carousel-caption d-none d-md-block text-danger bg-dark p-1">
-                    <h5 th:text="*{name}">Whey Protein</h5>
+                    <h5 style="color:var(--text-white);" th:text="*{name}">Whey Protein</h5>
                     <h6 style="text-decoration: line-through"
                         th:text="|Old price: ${#numbers.formatDecimal(p.price*2,1,2)}|">
                         Old price: 11.10
@@ -32,33 +32,26 @@
                     <h4 th:text="|New price: ${#numbers.formatDecimal(p.price,1,2)}|"></h4>
                     <th:block sec:authorize="${isAuthenticated()}">
                         <a th:unless="${#authentication.principal.shoppingCart.containsId(p.id)}"
-                           href="#" th:href="@{/shop/addToCart/{id}(id=*{id})}">
-                            <button class="btn-block btn-primary">Add to cart</button>
+                           href="#" class="text-decoration-none" th:href="@{/shop/addToCart/{id}(id=*{id})}">
+                            <button id="discount-add-to-cart-button" class="btn-block sexy-green-button text-decoration-none">
+                                Add to cart
+                            </button>
                         </a>
                         <label th:if="${#authentication.principal.shoppingCart.containsId(p.id)}"
                                class="added-label">Added&#10004;</label>
 
                     </th:block>
                     <th:block sec:authorize="${!isAuthenticated()}">
-                        <a class="add-to-cart-btn" th:href="@{/users/login}" href="#">Add to Cart</a>
+                        <a class="add-to-cart-btn" th:href="@{/users/login}" href="#">
+                            <button id="discount-add-to-cart-button" class="btn-block sexy-green-button text-decoration-none">
+                                Add to cart
+                            </button>
+                        </a>
                     </th:block>
 
                 </div>
             </div>
-            <!--            <div class="carousel-item">-->
-            <!--                <img class="d-block m-auto"  src="https://bit.ly/3QiliGN" alt="Second slide">-->
-            <!--                <div class="carousel-caption d-none d-md-block text-danger bg-dark">-->
-            <!--                    <h5>Snika2</h5>-->
-            <!--                    <h3>sfdgs</h3>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--            <div class="carousel-item">-->
-            <!--                <img class="d-block m-auto"  src="https://bit.ly/3Jq85JR" alt="Third slide">-->
-            <!--                <div class="carousel-caption d-none d-md-block text-danger bg-dark">-->
-            <!--                    <h5>Snimka3</h5>-->
-            <!--                    <h3>dsfgsfdgs</h3>-->
-            <!--                </div>-->
-            <!--            </div>-->
+
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

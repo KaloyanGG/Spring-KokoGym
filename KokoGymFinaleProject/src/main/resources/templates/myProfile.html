@@ -77,9 +77,17 @@
                 </th:block>
                 <th:block sec:authorize="!hasRole('TRAINER')">
                     <label class="formLabel" for="level">Level:</label>
-                    <select disabled th:value="${level}" name="level" id="level">
-                      <option th:each="l : ${T(com.example.kokogymfinaleproject.model.enums.LevelNameEnum).values()}"
-                                th:value="${l}" th:text="${l}"></option>
+                    <select disabled
+                            th:value="${levell}"
+                            th:name="level"
+                            id="level">
+                        <option th:each="l : ${T(com.example.kokogymfinaleproject.model.enums.LevelNameEnum).values()}"
+                                th:value="${l}"
+                                th:text="${l}"
+                                th:selected="${l.name() == levell}"
+                                >
+                        </option>
+<!--                        <option value="selected" selected> selected</option>-->
                     </select>
                 </th:block>
                 <label class="formLabel" for="imageUrl">ImageUrl:</label>

@@ -134,7 +134,7 @@
                         We have a wide variety of products to choose from.
                         You can buy any product you want from our shop.
                         Here you can find all the gym related products you need
-                        starting with supplments and with time we will add equipment
+                        starting with supplements and with time we will add equipment
                         and products.
                     </p>
 
@@ -172,6 +172,7 @@
     </div>
 
 <!--    todo: change order discounts if needed -->
+
 <!--    todo: check change level !-->
 
 </main>
@@ -195,7 +196,7 @@
                  class="carousel-item" th:classappend="${iStat.first ? 'active': ''}">
                 <img class="d-block m-auto" th:src="*{imageUrl}" src="https://bit.ly/3PVKmn0" alt="First slide">
                 <div style="height: 30%" class="carousel-caption d-none d-md-block text-danger bg-dark p-1">
-                    <h5 th:text="*{name}">Whey Protein</h5>
+                    <h5 style="color:var(--text-white);" th:text="*{name}">Whey Protein</h5>
                     <h6 style="text-decoration: line-through"
                         th:text="|Old price: ${#numbers.formatDecimal(p.price*2,1,2)}|">
                         Old price: 11.10
@@ -211,7 +212,11 @@
 
                     </th:block>
                     <th:block sec:authorize="${!isAuthenticated()}">
-                        <a class="add-to-cart-btn" th:href="@{/users/login}" href="#">Add to Cart</a>
+                        <a class="add-to-cart-btn" th:href="@{/users/login}" href="#">
+                            <button id="discount-add-to-cart-button" class="btn-block sexy-green-button text-decoration-none">
+                                Add to cart
+                            </button>
+                        </a>
                     </th:block>
 
                 </div>

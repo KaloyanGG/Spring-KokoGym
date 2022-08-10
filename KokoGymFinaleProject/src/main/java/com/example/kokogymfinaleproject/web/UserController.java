@@ -57,7 +57,7 @@ public class UserController {
         Object customerOrTrainerOrBossById = this.userService.findCustomerOrTrainerById(user.getId());
 
         if (customerOrTrainerOrBossById.getClass().getName().equals("com.example.kokogymfinaleproject.model.entity.CustomerEntity")) {
-            model.addAttribute("level", ((CustomerEntity) customerOrTrainerOrBossById).getLevel().getLevel().name());
+            model.addAttribute("levell", ((CustomerEntity) customerOrTrainerOrBossById).getLevel().getLevel().name());
         } else if (customerOrTrainerOrBossById.getClass().getName().equals("com.example.kokogymfinaleproject.model.entity.TrainerEntity")) {
             model.addAttribute("title", ((TrainerEntity) customerOrTrainerOrBossById).getTitle());
         }
