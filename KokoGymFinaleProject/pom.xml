@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>KokoGymFinaleProject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <role>KokoGymFinaleProject</role>
+<!--    <role>KokoGymFinaleProject</role>-->
     <description>KokoGymFinaleProject</description>
     <properties>
         <java.version>17</java.version>
