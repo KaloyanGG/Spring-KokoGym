@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/KokoGymFinaleProject/target/*.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,4 +50,4 @@ jobs:
           app-name: 'kokogym'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D145ACD7778C4ADAA9370FF743B5DB72 }}
-          package: 'KokoGymFinaleProject/*.jar'
+          package: '*.jar'
