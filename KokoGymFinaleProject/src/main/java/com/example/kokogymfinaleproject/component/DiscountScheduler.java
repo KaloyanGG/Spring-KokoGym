@@ -24,7 +24,7 @@ public class DiscountScheduler {
         this.productService = productService;
     }
 
-    @Scheduled(initialDelay = 5000, fixedDelay = 20000)
+    @Scheduled(initialDelay = 10000, fixedDelay = 3600000)
     public void scheduleFixedDelayTask() {
 
         if(products != null) {
