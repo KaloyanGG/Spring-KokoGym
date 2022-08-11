@@ -2,11 +2,10 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/KokoGym_DB?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-#    username: root
-#    password:
-    url: jdbc:mysql://kokogymfinal-database.mysql.database.azure.com:3306/demo?serverTimezone=UTC
-    username: spring@ewuijbkrmj
-    password: I5K67HE674844J53$
+    url: jdbc:mysql://geodeya.ddns.net/kroki?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: Kaloyan
+    password: Kay@!@#2022
+
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
