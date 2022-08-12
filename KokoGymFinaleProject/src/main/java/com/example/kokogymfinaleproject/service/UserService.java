@@ -285,4 +285,14 @@ public class UserService {
         this.userRepository.save(userById);
 
     }
+
+    public UserEntity findByUsername(String username) {
+
+        return this.userRepository.findByUsername(username).orElse(null);
+
+    }
+
+    public UserEntity findByEmail(String email) {
+        return this.userRepository.findByEmail(email).orElse(null);
+    }
 }

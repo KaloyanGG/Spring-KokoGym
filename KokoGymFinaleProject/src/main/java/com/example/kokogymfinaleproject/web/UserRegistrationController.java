@@ -2,6 +2,7 @@ package com.example.kokogymfinaleproject.web;
 
 import com.example.kokogymfinaleproject.model.binding.UserRegisterBindingModel;
 import com.example.kokogymfinaleproject.service.UserService;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -37,6 +38,9 @@ public class UserRegistrationController {
                                   BindingResult bindingResult,
                                   RedirectAttributes redirectAttributes) {
 
+        if(this.userService.findByUsername(userModel.getUsername())!=null) {
+            bindingResult.rejectValue("username", "username", "Username already exists!");
+        }
         if (!userModel.getPassword().equals(userModel.getConfirmPassword())) {
             bindingResult.rejectValue("confirmPassword", "confirmPassword", "Password and confirm password must match!");
         }
