@@ -81,7 +81,7 @@ public class UserRegistrationControllerIT {
                         .param("username1", "a")
                         .param("password", "topsecret")
                         .param("confirmPassword", "topsecret")
-                        .param("email1", "gosho@mail.com")
+                        .param("email", "gosho@mail.com")
                         .param("firstName", "Gosho")
                         .param("lastName", "Goshov")
                         .param("birthDate", "2000-01-01")
@@ -101,7 +101,25 @@ public class UserRegistrationControllerIT {
                         .param("username2", "anna")
                         .param("password", "topsecret")
                         .param("confirmPassword", "topsecret1")
-                        .param("email2", "gosho@mail.com")
+                        .param("email", "gosho@mail.com")
+                        .param("firstName", "Gosho")
+                        .param("lastName", "Goshov")
+                        .param("birthDate", "2000-01-01")
+                        .with(csrf())
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/users/register"));
+
+    }
+    @Test
+    void testRegistrationWithExistingEmail() throws Exception {
+
+
+        mockMvc.perform(post("/users/register")
+                        .param("username2", "anna")
+                        .param("password", "topsecret")
+                        .param("confirmPassword", "topsecret")
+                        .param("email", "shefa@mail.com")
                         .param("firstName", "Gosho")
                         .param("lastName", "Goshov")
                         .param("birthDate", "2000-01-01")

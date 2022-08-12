@@ -371,10 +371,10 @@ input[disabled] {
     border: 2px solid #283f8c;
     display: grid;
     grid-template-rows: 65% 35%;
-    /*max-width: 33.333%;*/
     min-width: 350px;
     flex-basis: auto;
     width: 33.333%;
+    height: 38vh;
 }
 
 .trainer-img {

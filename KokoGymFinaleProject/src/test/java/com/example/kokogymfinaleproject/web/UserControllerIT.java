@@ -59,5 +59,23 @@ public class UserControllerIT {
 
 
     }
+    @Test
+    @WithUserDetails(value = "customer1", userDetailsServiceBeanName = "userDetailsService")
+    void returnMyProfilePageWithCustomer() throws Exception {
+        mockMvc.perform(get("/users/myProfile")                )
+                .andExpect(status().isOk())
+                .andExpect(view().name("myProfile"));
+
+    }
+
+    @Test
+    @WithUserDetails(value = "trainer1", userDetailsServiceBeanName = "userDetailsService")
+    void returnMyProfilePageWithTrainer() throws Exception {
+        mockMvc.perform(get("/users/myProfile")                )
+                .andExpect(status().isOk())
+                .andExpect(view().name("myProfile"));
+
+    }
+
 
 }
