@@ -21,14 +21,15 @@ public class ProductService {
     }
 
     public void init() {
-
-        this.productRepository.saveAll(List.of(
-                new ProductEntity("Whey Protein", 5, 30.99, "https://bit.ly/3Jq85JR"),
-                new ProductEntity("Creatine Monohidrate", 50, 50.89, "https://bit.ly/3QiliGN"),
-                new ProductEntity("Fatburner", 90, 101.00, "https://bit.ly/3PVKmn0"),
-                new ProductEntity("BCAA", 12, 200.00, "https://bit.ly/3zTv4tu"),
-                new ProductEntity("Trenbolone Acetate", 20, 50.00, "https://bit.ly/3Sp0dfo")
-        ));
+        if (this.productRepository.count() == 0) {
+            this.productRepository.saveAll(List.of(
+                    new ProductEntity("Whey Protein", 5, 30.99, "https://bit.ly/3Jq85JR"),
+                    new ProductEntity("Creatine Monohidrate", 50, 50.89, "https://bit.ly/3QiliGN"),
+                    new ProductEntity("Fatburner", 90, 101.00, "https://bit.ly/3PVKmn0"),
+                    new ProductEntity("BCAA", 12, 200.00, "https://bit.ly/3zTv4tu"),
+                    new ProductEntity("Trenbolone Acetate", 20, 50.00, "https://bit.ly/3Sp0dfo")
+            ));
+        }
 
     }
 

@@ -67,7 +67,9 @@ public class GroupWorkoutService {
 
     public void init() {
 
-
+        if (this.groupWorkoutsRepository.count() != 0) {
+            return;
+        }
         GroupWorkoutEntity groupWorkout1=new GroupWorkoutEntity();
         groupWorkout1.setName("PowerYoga");
         groupWorkout1.setPurpose("flexibility");
