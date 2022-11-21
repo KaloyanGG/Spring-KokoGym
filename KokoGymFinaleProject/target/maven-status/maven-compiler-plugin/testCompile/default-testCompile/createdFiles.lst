@@ -1,0 +1,7 @@
+com\example\kokogymfinaleproject\service\KokoGymUserDetailsServiceTest.class
+com\example\kokogymfinaleproject\web\ProductControllerIT.class
+com\example\kokogymfinaleproject\web\UserRegistrationControllerIT.class
+com\example\kokogymfinaleproject\KokoGymFinaleProjectApplicationTests.class
+com\example\kokogymfinaleproject\web\TrainersControllerIT.class
+com\example\kokogymfinaleproject\web\HomeControllerIT.class
+com\example\kokogymfinaleproject\web\UserControllerIT.class

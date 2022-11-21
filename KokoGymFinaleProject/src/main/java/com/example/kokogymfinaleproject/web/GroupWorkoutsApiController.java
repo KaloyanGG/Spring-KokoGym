@@ -27,5 +27,10 @@ public class GroupWorkoutsApiController {
         return ResponseEntity.ok(groupWorkouts);
     }
 
+    @GetMapping("/healthCheck")
+    public String healthCheck(){
+        return "Everything looks healthy :)";
+    }
+
 
 }

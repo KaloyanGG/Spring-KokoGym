@@ -1,12 +1,12 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/KokoGym_DB?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-#    username: root
-#    password:
-    url: jdbc:mysql://geodeya.ddns.net/kroki?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-    username: Kaloyan
-    password: Kay@!@#2022
+    url: jdbc:mysql://localhost:3306/KokoGym_DB?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password:
+#    url: jdbc:mysql://XXX/kroki?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+#    username: Kaloyan
+#    password: Kay@!@#2022
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -16,3 +16,7 @@ spring:
   sql:
     init:
       mode: always
+
+server:
+# port: 5000
+  port: 8080

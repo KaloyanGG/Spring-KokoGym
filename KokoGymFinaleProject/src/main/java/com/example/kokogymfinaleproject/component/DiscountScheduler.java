@@ -26,6 +26,7 @@ public class DiscountScheduler {
 
     @Scheduled(initialDelay = 7000, fixedDelay = 3600000)
     public void scheduleFixedDelayTask() {
+        System.out.println("Scheduler started!");
 
         if(products != null) {
             for(ProductEntity product: products){
